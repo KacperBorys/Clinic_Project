@@ -1,1 +1,3 @@
 # Clinic_Project
+Projekt przychodni wykonany w C# WPF to aplikacja desktopowa, która umożliwia zarządzanie danymi pacjentów i umówienia wizyt. W aplikacji zaimplementowano funkcjonalności takie jak rejestracja pacjentów, dodawanie i edytowanie ich danych, dodawanie wizyt oraz zarządzanie nimi. Aplikacja umożliwia również przeglądanie historii chorób pacjentów oraz ich wyników badań.
+Aplikacja została zaprojektowana w sposób intuicyjny i użytkownik przy pomocy interfejsu graficznego może łatwo przeglądać, dodawać i edytować dane pacjentów oraz umawiać wizyty. Projekt przychodni wykonany w C# WPF umożliwia wygodne zarządzanie danymi pacjentów oraz zwiększa efektywność pracy personelu medycznego.
