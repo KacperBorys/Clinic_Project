@@ -1,0 +1,99 @@
+﻿<Window x:Class="Clinic_GUI.Przychodnia_Pacjent"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Clinic_GUI"
+        mc:Ignorable="d"
+        Title="Przychodnia_Pacjent" Height="490" Width="800">
+    <Grid>
+        <Label HorizontalAlignment="Left" Height="474" VerticalAlignment="Center" Width="311" Background="#FF4D82A4"/>
+        <Label HorizontalAlignment="Left" Height="89" VerticalAlignment="Top" Width="311" Background="#FF02355D"/>
+        <Image Source="/ATlas logo.jpg" RenderTransformOrigin="1.025,0.485" Margin="34,20,690,376" Stretch="Fill"/>
+        <TextBox HorizontalAlignment="Left" FontWeight="Bold" Height="21" Margin="130,34,0,0" TextWrapping="Wrap" TextAlignment="Center" Text="Atlas" Width="159" VerticalAlignment="Top"/>
+        <Image HorizontalAlignment="Left" Height="52" Margin="34,360,0,0" VerticalAlignment="Top" Width="52" Source="/inforamcje.png" Stretch="Fill"/>
+        <Image HorizontalAlignment="Left" Height="52" Margin="34,145,0,0" VerticalAlignment="Top" Width="52" Source="/doctors.png" Stretch="Fill"/>
+        <Image HorizontalAlignment="Left" Height="52" Margin="34,219,0,0" VerticalAlignment="Top" Width="52" Source="/apointments.png" Stretch="Fill"/>
+        <Image HorizontalAlignment="Left" Height="52" Margin="34,290,0,0" VerticalAlignment="Top" Width="52" Source="/dashboard.jpg" Stretch="Fill" RenderTransformOrigin="0.481,0.232"/>
+        <Label HorizontalAlignment="Left" Height="474" Margin="311,0,0,0" VerticalAlignment="Center" Width="489" Background="#FF91BFE2">
+
+        </Label>
+        <Button Content="" HorizontalAlignment="Left" Height="26" Margin="254,398,0,0" VerticalAlignment="Top" Width="35" Click="wylogowanie_Button_Click" >
+            <Button.Background>
+                <ImageBrush ImageSource="/logout 3.png"/>
+            </Button.Background>
+            <!--<Button.Background>
+                <ImageBrush ImageSource="img/logout 3.png"/>
+            </Button.Background>-->
+        </Button>
+        <!--Menu-->
+        <Button x:Name="Informacje" Content="Informations" Margin="101,356,534,40" Click="Informations_Button_Click_2" Background="{x:Null}" Foreground="White" FontWeight="Bold" BorderBrush="{x:Null}" FontSize="14"/>
+        <Button x:Name="Visits_history" Content="Appointments" Margin="101,208,534,188"  Background="{x:Null}" Foreground="White" FontWeight="Bold" BorderBrush="{x:Null}" FontSize="14" Click="Visits_history_Click"/>
+        <Button x:Name="Patient_history" Content="Patient history" Margin="101,280,534,116"  Background="{x:Null}" Foreground="White" FontWeight="Bold" BorderBrush="{x:Null}" FontSize="14" Click="Patient_History_Click"/>
+        <Button x:Name="Add_visit" Content="Add visit" Margin="101,139,534,257"  Background="{x:Null}" Foreground="White" FontWeight="Bold" BorderBrush="{x:Null}" FontSize="14" Click="Add_visit_Click"/>
+
+
+        <!--Informacje-->
+        <TextBlock x:Name="pola1" HorizontalAlignment="Left" Height="20" Margin="383,322,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Visibility="Hidden" Width="130" FontWeight="Bold"><Run Language="pl-pl" Text="Password"/></TextBlock>
+        <TextBlock x:Name="pola2" HorizontalAlignment="Left" Height="20" Margin="383,210,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Visibility="Hidden" Width="130" FontWeight="Bold"><Run Language="pl-pl" Text="Date of Birth"/></TextBlock>
+        <TextBlock x:Name="pola3" HorizontalAlignment="Left" Height="20" Margin="383,245,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Visibility="Hidden" Width="130" FontWeight="Bold"><Run Language="pl-pl" Text="Pesel"/></TextBlock>
+        <TextBlock x:Name="pola4" HorizontalAlignment="Left" Height="20" Margin="383,172,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Visibility="Hidden" Width="130" FontWeight="Bold"><Run Language="pl-pl" Text="Surname"/></TextBlock>
+        <TextBlock x:Name="pola5" HorizontalAlignment="Left" Height="20" Margin="383,137,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Visibility="Hidden" Width="130" FontWeight="Bold"><Run Language="pl-pl" Text="Name"/></TextBlock>
+        <TextBlock x:Name="pola" HorizontalAlignment="Left" Height="20" Margin="383,283,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Visibility="Hidden" Width="130" FontWeight="Bold"><Run Language="pl-pl" Text="Sex"/></TextBlock>
+        <TextBox x:Name="Imie" IsReadOnly="True"  Text="" HorizontalAlignment="Left" Height="20" Margin="513,138,0,0" TextWrapping="Wrap" Visibility="Hidden" VerticalAlignment="Top" Width="220" Background="White" AutomationProperties.IsColumnHeader="True" AutomationProperties.AcceleratorKey="" Cursor=""   />
+        <TextBox x:Name="Nazwisko" IsReadOnly="True"  HorizontalAlignment="Left" Height="20" Margin="513,172,0,0" TextWrapping="Wrap" Visibility="Hidden" VerticalAlignment="Top" Width="220" Background="White"/>
+        <TextBox x:Name="Data_Urodzenia" IsReadOnly="True"  HorizontalAlignment="Left" Height="20" Margin="513,210,0,0" TextWrapping="Wrap" Visibility="Hidden" VerticalAlignment="Top" Width="220" Background="White"/>
+        <TextBox x:Name="Pesel" IsReadOnly="True"  HorizontalAlignment="Left" Height="20" Margin="513,245,0,0" TextWrapping="Wrap" Visibility="Hidden" VerticalAlignment="Top" Width="220" Background="White"/>
+        <PasswordBox x:Name="PasswordHidden" Focusable="False" IsHitTestVisible="False"   HorizontalAlignment="Left" Height="20" Visibility="Hidden" Margin="513,322,0,0" VerticalAlignment="Top" Width="220" Password="123456789" />
+        <TextBox x:Name="Plec" HorizontalAlignment="Left" IsReadOnly="True"  Height="20" Margin="513,283,0,0" TextWrapping="Wrap" Visibility="Hidden" VerticalAlignment="Top" Width="220" Background="White"/>
+        <Button x:Name="Change_Button" Content="Change password" Margin="637,385,44,16" Background="#FF62C0E8" Visibility="Hidden" Foreground="Black" FontWeight="Bold" Click="Button_Click"/>
+        <Image x:Name="Zdjecie" Margin="382,16,287,317" Source="Images/Man avatar.png" Stretch="Fill" Visibility="Hidden"/>
+        <TextBox x:Name="moj_Profil" HorizontalAlignment="Left" IsReadOnly="True" Height="56" Margin="542,42,0,0" TextWrapping="Wrap" Visibility="Hidden" Text="My Profile" VerticalAlignment="Top" Width="162" Background="{x:Null}" FontWeight="Bold" FontSize="30" BorderBrush="{x:Null}"/>
+
+
+        <!--Appointments-->
+        <ListBox x:Name="Lista" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="352,42,41,227" Visibility="Hidden"/>
+        <Button x:Name="b1" Content="Sort" Margin="597,245,67,161" Click="BtnSortujWizyty_Click" FontWeight="Bold" Visibility="Hidden"/>
+        <Button x:Name="b2" Content="Delete" Margin="352,322,314,79" Click="BtnUsun_Wizyte_Click" FontWeight="Bold" Visibility="Hidden"/>
+        <Button x:Name="b3" Content="Search for a doctor" Margin="597,322,67,79" Click="BtnSzukajLekarz_Click" FontWeight="Bold" Visibility="Hidden"/>
+        <Button x:Name="b4" Content="All visits" Margin="352,242,312,161" Click="BtnWszystkieWizyty_Click" FontWeight="Bold" Visibility="Hidden"/>
+        <ComboBox x:Name="Lekarze" Margin="597,380,67,30" Visibility="Hidden"/>
+
+
+        <!--Add_visit-->
+        <Calendar Name="calendar" Visibility="Hidden"
+          Background="White" 
+          Foreground="Black" 
+          SelectedDate="{Binding SelectedDate, UpdateSourceTrigger=PropertyChanged}" 
+          SelectionMode="SingleDate"
+          SelectedDatesChanged="Calendar_SelectedDatesChanged" 
+          DisplayMode="Year" Margin="565,85,35,193">
+
+            <Calendar.CalendarDayButtonStyle>
+                <Style TargetType="CalendarDayButton">
+                    <Setter Property="Background" Value="Transparent"/>
+                    <Setter Property="Foreground" Value="Black"/>
+                    <Setter Property="BorderBrush" Value="Transparent"/>
+                    <Setter Property="IsEnabled" Value="{Binding IsEnabled}"/>
+                    <Style.Triggers>
+                        <Trigger Property="IsSelected" Value="True">
+                            <Setter Property="Background" Value="DarkGray" />
+                            <Setter Property="Foreground" Value="White"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Calendar.CalendarDayButtonStyle >
+
+        </Calendar>
+        <ComboBox x:Name="wybor_Lekarza"  Visibility="Hidden" Margin="380,114,303,307" SelectionChanged="wybor_Lekarza_SelectionChanged"/>
+        <TextBlock x:Name="doctor_text"  Visibility="Hidden" TextWrapping="Wrap" Margin="380,93,292,335" FontWeight="Bold"><Run Language="pl-pl" Text="Choose a doctor"/></TextBlock>
+        <TextBlock x:Name="date_text" TextWrapping="Wrap"  Visibility="Hidden" Margin="382,162,318,266" FontWeight="Bold"><Run Language="pl-pl" Text="Choose a date"/></TextBlock>
+        <ComboBox x:Name="wybor_terminu"  Visibility="Hidden" Margin="380,187,303,233"/>
+        <Button x:Name="create_butto" Content="Create a visit"  Visibility="Hidden" Margin="486,342,186,70" FontWeight="Bold" Background="#FFDAACAC" BorderBrush="Black" Click="Button_Click_2"/>
+        <TextBox x:Name="Add_visit1" TextWrapping="Wrap" HorizontalAlignment="Left" Text="Create Visit" Margin="460,20,0,374" FontWeight="Bold" FontSize="30" Visibility="Hidden" Background="{x:Null}" BorderBrush="{x:Null}" SelectionBrush="{x:Null}" Width="227"/>
+
+        <!--Patient_history-->
+        <ListBox x:Name="history_ListBox" Visibility="Hidden" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="400,64,53,171"/>
+        <TextBlock x:Name="history_txtbox" HorizontalAlignment="Left" Height="39" FontSize="30" Margin="478,20,0,0" Visibility="Hidden" TextWrapping="Wrap" VerticalAlignment="Top"  Width="192" FontWeight="Bold"><Run Language="pl-pl" Text="Your history"/></TextBlock>
+    </Grid>
+</Window>

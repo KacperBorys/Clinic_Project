@@ -1,0 +1,50 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net6.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="apointments.png" />
+    <None Remove="ATlas logo.jpg" />
+    <None Remove="dashboard.jpg" />
+    <None Remove="doctors.png" />
+    <None Remove="Google_Contacts_logo.png" />
+    <None Remove="inforamcje.png" />
+    <None Remove="logout 3.png" />
+    <None Remove="Man avatar.png" />
+    <None Remove="oko.png" />
+    <None Remove="woman2.png" />
+    <None Remove="womendoc.jpg" />
+    <None Remove="zdj3.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\.editorconfig" Link=".editorconfig" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="Clinic_Project">
+      <HintPath>..\Clinic_Project\bin\Debug\net6.0\Clinic_Project.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="apointments.png" />
+    <Resource Include="ATlas logo.jpg" />
+    <Resource Include="dashboard.jpg" />
+    <Resource Include="doctors.png" />
+    <Resource Include="Google_Contacts_logo.png" />
+    <Resource Include="inforamcje.png" />
+    <Resource Include="logout 3.png" />
+    <Resource Include="Man avatar.png" />
+    <Resource Include="oko.png" />
+    <Resource Include="woman2.png" />
+    <Resource Include="womendoc.jpg" />
+    <Resource Include="zdj3.png" />
+  </ItemGroup>
+
+</Project>

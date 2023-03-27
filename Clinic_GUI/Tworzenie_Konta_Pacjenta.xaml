@@ -1,0 +1,36 @@
+﻿<Window x:Class="Clinic_GUI.Tworzenie_Konta_Pacjenta"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Clinic_GUI"
+        mc:Ignorable="d"
+        Title="Tworzenie_Konta_Pacjenta" Height="471" Width="800">
+    <Grid>
+        <Label Content="" Margin="311,0,0,-1" Background="#FF98C5D0"/>
+        <Label HorizontalAlignment="Left" Height="456" VerticalAlignment="Center" Width="311" Background="#FF5A9FD4"/>
+        <Image Height="1" Width="1"/>
+        <TextBlock HorizontalAlignment="Left" Height="20" Margin="380,264,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="130"><Run Language="pl-pl" Text="Password"/></TextBlock>
+        <TextBlock HorizontalAlignment="Left" Height="20" Margin="380,152,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="130"><Run Language="pl-pl" Text="Date of Birth"/></TextBlock>
+        <TextBlock HorizontalAlignment="Left" Height="20" Margin="380,187,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="130"><Run Language="pl-pl" Text="Pesel"/></TextBlock>
+        <TextBlock HorizontalAlignment="Left" Height="20" Margin="380,114,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="130"><Run Language="pl-pl" Text="Surname"/></TextBlock>
+        <TextBlock HorizontalAlignment="Left" Height="20" Margin="380,79,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="130"><Run Language="pl-pl" Text="Name"/></TextBlock>
+        <TextBlock HorizontalAlignment="Left" Height="20" Margin="380,225,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="130"><Run Language="pl-pl" Text="Sex"/></TextBlock>
+        <Button Content="Back" HorizontalAlignment="Left" Height="34" Margin="400,373,0,0" VerticalAlignment="Top" Width="100" Background="#FFD86D6D" Click="WrocButton_Click"/>
+        <Button x:Name="Save" Content="Save" HorizontalAlignment="Left" Height="34" Margin="620,373,0,0" VerticalAlignment="Top" Width="100" Background="#FF6EC555" Click="ZapiszButton_Click"/>
+        <TextBlock HorizontalAlignment="Left" Height="48" Margin="91,251,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="177" FontSize="24"><Run Language="pl-pl" Text="Registration"/></TextBlock>
+        <ComboBox x:Name="Plec" HorizontalAlignment="Left" Height="20" KeyDown="MyTextBox_KeyDown5" Margin="510,225,0,0" VerticalAlignment="Top" Width="220" SelectedIndex="1" Padding="2">
+            <ComboBoxItem Content="Woman"/>
+            <ComboBoxItem Content="Man"/>
+        </ComboBox>
+        <Image HorizontalAlignment="Left" Height="182" Margin="42,64,0,0" VerticalAlignment="Top" Width="226" Source="/Google_Contacts_logo.png" Stretch="Fill" RenderTransformOrigin="-3.287,-6.419"/>
+        <TextBox x:Name="Imie"  KeyDown="MyTextBox_KeyDown1" MouseDoubleClick="Click_Imie" HorizontalAlignment="Left" Height="20" Margin="510,80,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="220" Background="#FFCBD2DB" AutomationProperties.IsColumnHeader="True" AutomationProperties.AcceleratorKey="" Cursor="" Text="Jan"  />
+        <TextBox x:Name="Nazwisko" KeyDown="MyTextBox_KeyDown2" MouseDoubleClick="Click_Nazwisko" HorizontalAlignment="Left" Height="20" Margin="510,114,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="220" Background="#FFCBD2DB"  Text="Kowalski"/>
+        <TextBox x:Name="Data_Urodzenia" KeyDown="MyTextBox_KeyDown3" MouseDoubleClick="Click_DataUrodzenia" HorizontalAlignment="Left" Height="20" Margin="510,152,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="220" Background="#FFCBD2DB" Text="08.06.1975"/>
+        <TextBox x:Name="Pesel" MouseDoubleClick="Click_Pesel" KeyDown="MyTextBox_KeyDown4" HorizontalAlignment="Left" Height="20" Margin="510,187,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="220" Background="#FFCBD2DB" Text="69463683526"/>
+        <PasswordBox x:Name="PasswordHidden" KeyDown="MyTextBox_KeyDown6" MouseDoubleClick="Click_Haslo" HorizontalAlignment="Left" Height="20" Margin="510,264,0,0" VerticalAlignment="Top" Width="220" />
+        <Button Content="Reset"  HorizontalAlignment="Left" Height="34" Margin="510,373,0,0" VerticalAlignment="Top" Width="100" Background="#FF5594C5" Click="ResetButton_Click"/>
+        <TextBox x:Name="PasswordUnmask" TextWrapping="Wrap" Text="TextBox" Margin="503,264,47,148" Visibility="Hidden" Width="220" Height="20"/>
+        <Image x:Name="Eye_Close" HorizontalAlignment="Left" Height="18" Margin="735,266,0,0" VerticalAlignment="Top" Width="20" Source="/oko.png" PreviewMouseDown="ShowPassword_PreviewMouseDown" PreviewMouseUp="ShowPassword_PreviewMouseUp" MouseLeave="ShowPassword_MouseLeave" RenderTransformOrigin="12.7,-2.453" />
+    </Grid>
+</Window>
