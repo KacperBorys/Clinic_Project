@@ -1,15 +1,15 @@
 # Clinic_Project🩺
 
 # Table of Contents📓
-* Project Description
-* Running the Application
-* Console Application (Class Description)
-* Clinic Visualization
-* WPF Application (Window Description)
-* ADMIN Functions
-* Patient Functions
-* Doctor Functions
-* Conclusion
+* [Project Description](#project-description)
+* [Running the Application](#running-the-application)
+* [Console Application(class-description)](#console-application)
+* [WPF Application (Window Description)](#wpf-application)
+* [Clinic Visualization](#clinic-visualization)
+* [ADMIN Functions](#admin-functions)
+* [Patient Functions](#patient-functions)
+* [Doctor Functions](#doctor-functions)
+* [Conclusion](#conclusion)
 <br>
 
 ## Project Description🖊
@@ -55,18 +55,7 @@ Exception classes are used to signal errors and incorrect situations in the prog
 ### Program Class (Main)▶️
 In this class, instances of the Pacjent, Lekarz, Wizyta, and Diagnoza objects were created. Accounts were also created for these objects.
 
-## Clinic visualization📺
-It was made using the WPF platform. Its visualization is presented in the following illustrations:
-<br>
-
-![image](https://user-images.githubusercontent.com/101069553/228077461-be656194-fdf1-482f-a9ed-b8120409ca43.png)
-![image](https://user-images.githubusercontent.com/101069553/228077767-c3e36140-65df-4eb3-9aa7-a1d475339aac.png)
-![image](https://user-images.githubusercontent.com/101069553/228078601-b24174ac-b6a7-4935-896f-4de2381324cb.png)
-![image](https://user-images.githubusercontent.com/101069553/228077560-c34a138e-02e4-4b82-a09b-4cab6b4f0d36.png)
-![image](https://user-images.githubusercontent.com/101069553/228078691-b76ddf77-ff6f-480a-8c02-d76332dd4da8.png)
-![image](https://user-images.githubusercontent.com/101069553/228078436-c3be9537-d4b2-4a4a-ad8b-fbf562d1bd08.png)
-
-## WPF Application (description of windows)🖥
+## WPF Application🖥
 The following windows were used in the project:
 * MainWindow (Login process)
 * Przychodnia_ADMIN (ADMIN's functionalities)
@@ -74,6 +63,28 @@ The following windows were used in the project:
 * Przychodnia_Pacjent (Patient's functionalities)
 * Tworzenie_Konta_Pacjenta (Patient registration)
 * Zmiana_Hasla (Password change process)
+
+## Clinic visualization📺
+It was made using the WPF platform. Its visualization is presented in the following illustrations:
+<br>
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/101069553/228077461-be656194-fdf1-482f-a9ed-b8120409ca43.png" width="300">
+</p>
+<p align="center">
+<img src="https://user-images.githubusercontent.com/101069553/228077767-c3e36140-65df-4eb3-9aa7-a1d475339aac.png" width="800">
+</p>
+<p align="center">
+<img src="https://user-images.githubusercontent.com/101069553/228078601-b24174ac-b6a7-4935-896f-4de2381324cb.png" width="800">
+</p>
+<p align="center">
+<img src="https://user-images.githubusercontent.com/101069553/228077560-c34a138e-02e4-4b82-a09b-4cab6b4f0d36.png" width="800">
+</p>
+<p align="center">
+<img src="https://user-images.githubusercontent.com/101069553/228078691-b76ddf77-ff6f-480a-8c02-d76332dd4da8.png" width="800">
+</p>
+<p align="center">
+<img src="https://user-images.githubusercontent.com/101069553/228078436-c3be9537-d4b2-4a4a-ad8b-fbf562d1bd08.png" width="500">
+</p>
 
 ## ADMIN Functions👨‍💼
 * Management of user accounts (adding, deleting accounts)
