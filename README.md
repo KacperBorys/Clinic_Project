@@ -1,59 +1,64 @@
 # Clinic_Project🩺
 
-## Opis projektu🖊
-Projekt przychodni wykonany w C# WPF to aplikacja desktopowa, która umożliwia zarządzanie danymi pacjentów i umówienia wizyt. W aplikacji zaimplementowano funkcjonalności takie jak rejestracja pacjentów, dodawanie i edytowanie ich danych, dodawanie wizyt oraz zarządzanie nimi. Aplikacja umożliwia również przeglądanie historii chorób pacjentów oraz ich wyników badań.
-Aplikacja została zaprojektowana w sposób intuicyjny i użytkownik przy pomocy interfejsu graficznego może łatwo przeglądać, dodawać i edytować dane pacjentów oraz umawiać wizyty. Projekt przychodni wykonany w C# WPF umożliwia wygodne zarządzanie danymi pacjentów oraz zwiększa efektywność pracy personelu medycznego.
+# Table of Contents📓
+* Project Description
+* Running the Application
+* Console Application (Class Description)
+* Clinic Visualization
+* WPF Application (Window Description)
+* ADMIN Functions
+* Patient Functions
+* Doctor Functions
+* Conclusion
+<br>
 
-## Uruchomienie💻
-W głównym okienku należy kliknąć kolejno Plik -> Otwórz -> przychodnia.xml
-Dzięki czemu będziemy mieli możliwość zalogowania jako:
-* ADMIN (login: ADMIN, hasło: ADMIN)
-* PACJENT (login: 02463001875, hasło: password
-* LEKARZ (login: 02453001875, hasło: 123123)
+## Project Description🖊
+The clinic project is developed in C# WPF - a desktop application that enables management of patient data and appointment scheduling. The application implements functionalities such as patient registration, adding and editing their information, adding appointments, and managing them. The application also allows viewing the patient's medical history and their test results.
+The application is designed in an intuitive way, and the user can easily browse, add, and edit patient data and schedule appointments using the graphical user interface. The clinic project developed in C# WPF enables convenient management of patient data and increases the efficiency of medical staff.
+<br>
 
-## Spis treści📓
-* Aplikacja konsolowa (opis klas)
-* Wizualizacja przychodni
-* Aplikacja WPF (opis okienek)
-* Funckje ADMINA
-* Funkcje Pacjenta
-* Funkcje Lekarza
-* Zakończenie
+## Running the Application💻
+To run the application, compile the project in Visual Studio and run the executable file.<br>
+In the main window, click File -> Open -> clinic.xml
+This will allow us to log in as:
 
+ADMIN (login: ADMIN, password: ADMIN) <br>
+PATIENT (login: 02463001875, password: password) <br>
+DOCTOR (login: 02453001875, password: 123123) <br>
 
+## Console Application🎮
+### Person Class👤
+The Person class represents a person who can be a doctor or patient in the medical system. This class is abstract and contains fields such as name, surname, date of birth, PESEL, and gender.
 
-## Aplikacja konsolowa🎮
+### Patient Class🙍
+The Patient class is a class that represents a patient in a clinic, inherited from the Person class. This class has a list of the patient's visit history (of type List<Diagnosis>) and methods for adding and removing diagnoses from this list.
 
-### Klasa Osoba👤
-* Klasa Osoba reprezentuje osobę, która może być lekarzem lub pacjentem w systemie medycznym. Klasa ta jest abstrakcyjna i zawiera pola takie jak imię, nazwisko, datę urodzenia, pesel, oraz płeć.
+### Doctor Class👨‍🔬
+The Doctor class represents a doctor in the clinical system, inherited from the Person class. The class has several fields, including "specialization", "working hours", "scheduled_appointments".
 
-### Klasa Pacjent🙍
-* Klasa Pacjent jest dziedziczącą po klasie Osoba klasą reprezentującą pacjenta w klinice. Klasa ta posiada listę historii wizyt pacjenta (typu List<Diagnoza>) oraz metody dodające i usuwające diagnozy z tej listy.
+### ADMIN Class👨‍💼
+The ADMIN class represents the system administrator in the Clinic_Project application. It contains two static string properties: login and password, which store the administrator's login data.
 
-### Klasa Lekarz👨‍🔬
-* Klasa "Lekarz" reprezentuje lekarza w systemie klinicznym. Dziedziczy po klasie "Osoba".Klasa posiada kilka pól, m.in. "specjalizacja", "godzinyPracy", "zaplanowane_Wizyty".
+### Diagnosis Class💊
+The Diagnosis class represents the patient's diagnosis, which is assigned to a doctor's visit. This class contains fields such as visit, disease, and prescription. The ToString() method is used to create a list of diagnoses that contains information about the date of the visit, the diagnosed disease, and the prescribed prescription.
 
-### Klasa ADMIN👨‍💼
-* Klasa Admin to klasa reprezentująca administratora systemu w aplikacji Clinic_Project. Zawiera ona dwie właściwości statyczne typu string: login i haslo, które przechowują dane do logowania się administratora.
+### Appointment Class📇
+The Appointment class represents a patient's visit to a doctor in the clinical system. The class contains four fields: date, doctor, patient, and time. The ToString() method is used to create information about the appointment: the patient's first name, last name, and PESEL, as well as the doctor's name and PESEL, and the specific date and time of the meeting.
 
-### Klasa Diagnoza💊
-* Klasa Diagnoza reprezentuje diagnozę pacjenta, która jest przypisana do wizyty u lekarza. Klasa ta zawiera pola takie jak wizyta, choroba i recepta. Metoda ToString() służy do tworzenia listy diagnoz, która zawiera informacje o dacie wizyty, zdiagnozowanej chorobie i przepisanej recepcie.
+### Clinic Class🏠
+The Clinic class represents a medical facility that includes lists of doctors, patients, and visits, as well as the opening and closing hours of the facility and a dictionary of accounts allowing logging into the system.
+This class enables serialization of objects to XML format and reading from an XML file.
 
-### Klasa Wizyta📇
-* Klasa Wizyta to klasa reprezentująca wizytę pacjenta u lekarza w systemie klinicznym.Klasa zawiera cztery pola: data, lekarza, pacjenta oraz godzinę.  Metoda ToString() służy do tworzenia informacji o wizycie: imieniu, nazwisku oraz peselu pacjenta jak i lekarza oraz konkretną datę i godzinę spotkania.
+### Exception classes DayException and HourException❗️
+Exception classes are used to signal errors and incorrect situations in the program. These are special classes that inherit from the Exception class or one of its derivatives.
 
-### Klasa Placówka🏠
-* Klasa Placowka reprezentuje placówkę medyczną, która zawiera listy lekarzy, pacjentów i wizyt, a także godzinę otwarcia i zamknięcia placówki oraz słownik kont umożliwiający logowanie do systemu.
-Klasa ta umożliwia serializację obiektów klasy do formatu XML jak i odczytu pliku XML.
+### Program Class (Main)▶️
+In this class, instances of the Pacjent, Lekarz, Wizyta, and Diagnoza objects were created. Accounts were also created for these objects.
 
-### Klasy wyjątków DayException oraz HourException❗️
-* Klasy wyjątków  służą do sygnalizowania błędów i nieprawidłowych sytuacji w programie. Są to specjalne klasy, które dziedziczą po klasie Exception lub jednej z jej pochodnych.
+## Clinic visualization📺
+It was made using the WPF platform. Its visualization is presented in the following illustrations:
+<br>
 
-### Klasa Program (Main)▶️
-* W tej klasie zostały utworzone instancje obiektów Pacjent, Lekarz, Wizyta oraz Diagnoza.Następnie zostały utworzone również konta dla tych obiektów.
-
-## Wizualizacja przychodni📺
-* Została ona wykonana przy użyciu platformy WPF. Jej wizualizację przedstawiają poniższe ilustracje:
 ![image](https://user-images.githubusercontent.com/101069553/228077461-be656194-fdf1-482f-a9ed-b8120409ca43.png)
 ![image](https://user-images.githubusercontent.com/101069553/228077767-c3e36140-65df-4eb3-9aa7-a1d475339aac.png)
 ![image](https://user-images.githubusercontent.com/101069553/228078601-b24174ac-b6a7-4935-896f-4de2381324cb.png)
@@ -61,33 +66,38 @@ Klasa ta umożliwia serializację obiektów klasy do formatu XML jak i odczytu p
 ![image](https://user-images.githubusercontent.com/101069553/228078691-b76ddf77-ff6f-480a-8c02-d76332dd4da8.png)
 ![image](https://user-images.githubusercontent.com/101069553/228078436-c3be9537-d4b2-4a4a-ad8b-fbf562d1bd08.png)
 
-## Aplikacja WPF (opis okienek)🖥
-W projekcie zostały wukorzystane następujące okienka
-* MainWindow (Proces logowania się)
-* Przychodnia_ADMIN (Funkcjonalności ADMINA)
-* Przychodnia_Doktor (Funkcjonalności doktora)
-* Przychodnia_Pacjent (Funkcjonalności pacjenta)
-* Tworzenie_Konta_Pacjenta (Rejestracja pacjenta)
-* Zmiana_Hasla (Proces zmiany hasła)
+## WPF Application (description of windows)🖥
+The following windows were used in the project:
+* MainWindow (Login process)
+* Przychodnia_ADMIN (ADMIN's functionalities)
+* Przychodnia_Doktor (Doctor's functionalities)
+* Przychodnia_Pacjent (Patient's functionalities)
+* Tworzenie_Konta_Pacjenta (Patient registration)
+* Zmiana_Hasla (Password change process)
 
-## Funkcje ADMINA👨‍💼
-* Zarządzanie kontami użytkowników (dodawanie, usuwanie kont)
-* Zarządzanie listą pacjentów
-* Zarządzanie listą lekarzy
-* Zarządzanie listą wizyt
+## ADMIN Functions👨‍💼
+* Management of user accounts (adding, deleting accounts)
+* Management of the list of patients
+* Management of the list of doctors
+* Management of the list of visits
 
-## Funkcje Pacjenta🙍
-* Rejestracja nowego konta pacjenta
-* Przeglądanie swojego profilu i edycja swoich danych osobowych
-* Przeglądanie wizyt oraz umawianie nowych wizyt u lekarza
-* Przeglądanie swojej historii chorób oraz wyników badań medycznych
-* Możliwość anulowania wizyt
+## Patient Functions🙍
+* Registration of a new patient account
+* Viewing their profile and editing their personal data
+* Viewing visits and making new appointments with a doctor
+* Viewing their medical history and test results
+* Ability to cancel visits
 
-## Funkcje Lekarza👨‍🔬
-* Rejestracja nowego konta jako pacjent
-* Przeglądanie swojego profilu i edycja swoich danych osobowych 
-* Dodawanie nowych wizyt i przeglądanie listy swoich wizyt
-* Przeglądanie historii chorób pacjentów oraz ich wyników badań medycznych
+## Doctor Functions👨‍🔬
+* Registering a new account as a patient
+* Viewing their profile and editing their personal data
+* Adding new visits and viewing their list of visits
+* Viewing patients' medical history and test results
+
+## Conclusion🔚
+The clinic project was created in C# language with the use of graphical user interface (GUI). The aim of the project was to design a system that allows for patient, doctor, and admin registration, as well as the ability to view data, schedule appointments, and more. To create the project, I used classes that helped me organize the code and made it easier to work with data. I also implemented an authentication and authorization mechanism that protects patient medical data from unauthorized access. Additionally, interfaces such as IEquatable, ICloneable, IComparable, and Exception were used.<br>
+
+I am satisfied with the project results and believe that I have achieved all of the goals.✅
 
 
 
