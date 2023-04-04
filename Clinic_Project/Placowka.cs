@@ -12,7 +12,7 @@ namespace Clinic_Project
     [KnownType(typeof(Pacjent))]
     [KnownType(typeof(Lekarz))]
     /// <summary>
-    /// Klasa Placowka
+    /// Class Placowka
     /// </summary>
     public class Placowka
     {
@@ -24,36 +24,41 @@ namespace Clinic_Project
         Dictionary<string, string> konta;
 
         [DataMember]
-        /// <summary>Właściwość GodzinaOtwarcia umożliwia dostęp do pola godzinaOtwarcia.
+        /// <summary>
+        /// The GodzinaOtwarcia property allows access to the godzinaOtwarcia field.
         /// </summary>
         public TimeSpan GodzinaOtwarcia { get => godzinaOtwarcia; set => godzinaOtwarcia = value; }
         [DataMember]
-        /// <summary>Właściwość GodzinaZamkniecia umożliwia dostęp do pola godzinaZamkniecia.
+        /// <summary>
+        /// The GodzinaZamkniecia property allows access to the godzinaZamkniecia field.
         /// </summary>
         public TimeSpan GodzinaZamkniecia { get => godzinaZamkniecia; set => godzinaZamkniecia = value; }
         [DataMember]
-        /// <summary>Właściwość Lekarze umożliwia dostęp do pola lekarze.
+        /// <summary>
+        /// The Lekarze property allows access to the lekarze field.
         /// </summary>
         public List<Lekarz> Lekarze { get => lekarze; set => lekarze = value; }
         [DataMember]
-        /// <summary>Właściwość Wizyty umożliwia dostęp do pola wizyty.
+        /// <summary>
+        /// Property Wizyty allows access to the field wizyty.
         /// </summary>
         public List<Wizyta> Wizyty { get => wizyty; set => wizyty = value; }
         [DataMember]
-        /// <summary>Właściwość Pacjenci umożliwia dostęp do pola pacjenci.
+        /// <summary>
+        /// The Pacjenci property allows access to the pacjenci field.
         /// </summary>
         public List<Pacjent> Pacjenci { get => pacjenci; set => pacjenci = value; }
         [DataMember]
-        /// <summary>Właściwość Konta umożliwia dostęp do pola pacjenci.
+        /// <summary>
+        /// The Account property allows access to the accounts field.
         /// </summary>
         public Dictionary<string, string> Konta { get => konta; set => konta = value; }
-
         /// <summary>
-        /// Konstruktor domyślny klasy<see cref="Placowka"/>.
+        /// Default constructor for the <see cref="Placowka"/> class.
         /// </summary>
-#pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
+        #pragma warning disable CS8618 
         public Placowka()
-#pragma warning restore CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
+        #pragma warning restore CS8618
         {
             Lekarze = new();
             Pacjenci = new();
@@ -63,23 +68,23 @@ namespace Clinic_Project
             Konta = new();
         }
         /// <summary>
-        /// Konstruktor parametryczny klasy <see cref="Placowka"/>.
+        /// Parameterized constructor for <see cref="Placowka"/> class.
         /// </summary>
-        /// <param name="godzinaOtwarcia">Godzina otwarcia placówki</param>
-        /// <param name="godzinaZamkniecia">Godzina zamknięcia placówki</param>
+        /// <param name="godzinaOtwarcia">Opening time of the facility</param>
+        /// <param name="godzinaZamkniecia">Closing time of the facility</param>
         public Placowka(TimeSpan godzinaOtwarcia, TimeSpan godzinaZamkniecia) : this()
         {
             GodzinaOtwarcia = godzinaOtwarcia;
             GodzinaZamkniecia = godzinaZamkniecia;
         }
         /// <summary>
-        /// Konstruktor parametryczny klasy <see cref="Placowka"/>.
+        /// Parametrized constructor of the <see cref="Placowka"/> class.
         /// </summary>
-        /// <param name="lekarze">Lekarze w placówce</param>
-        /// <param name="pacjenci">Pacjenci w placówce</param>
-        /// <param name="wizyty">Wizyty</param>
-        /// <param name="godzinaOtwarcia">Godzina otwarcia placówki</param>
-        /// <param name="godzinaZamkniecia">Godzina zamknięcia placówki</param>
+        /// <param name="lekarze">The doctors in the facility</param>
+        /// <param name="pacjenci">The patients in the facility</param>
+        /// <param name="wizyty">The visits in the facility</param>
+        /// <param name="godzinaOtwarcia">The opening hour of the facility</param>
+        /// <param name="godzinaZamkniecia">The closing hour of the facility</param>
         public Placowka(List<Lekarz> lekarze, List<Pacjent> pacjenci, List<Wizyta> wizyty, TimeSpan godzinaOtwarcia, TimeSpan godzinaZamkniecia) : this(godzinaOtwarcia, godzinaZamkniecia)
         {
             Lekarze = lekarze;
@@ -87,9 +92,9 @@ namespace Clinic_Project
             Wizyty = wizyty;
         }
         /// <summary>
-        /// Dodaje wizyte
+        /// Adds a visit to the list of visits.
         /// </summary>
-        /// <param name="wizyta">Wizyta</param>
+        /// <param name="visit">The visit to be added.</param>
         public void DodajWizyte(Wizyta wizyta)
         {
             if (wizyta == null) { return; }
@@ -100,49 +105,48 @@ namespace Clinic_Project
             }
         }
         /// <summary>
-        /// Kończy aktualnie trwającą wizytę i dodaje diagnozę.
+        /// Ends the currently ongoing visit and adds a diagnosis.
         /// </summary>
-        /// <param name="diagnoza">Diagnoza</param>
-        public void ZakonczWizyte(Diagnoza diagnoza) //jak w WPF bedzie to idk czy to trzeba bedzie zmienic na inne argumenty
+        /// <param name="diagnoza">The diagnosis to be added.</param>
+        public void ZakonczWizyte(Diagnoza diagnoza)
         {
             Wizyta w1 = diagnoza.Wizyta;
-#pragma warning disable CS8600 // Converting null literal or possible null value to non-nullable type.
+        #pragma warning disable CS8600 
             Pacjent p1 = Pacjenci.Find(p => p.Equals(w1.Pacjent));
-#pragma warning restore CS8600 // Converting null literal or possible null value to non-nullable type.
-#pragma warning disable CS8602 // Dereference of a possibly null reference.
+        #pragma warning restore CS8600 
+        #pragma warning disable CS8602 
             p1.DodajDiagnoze(diagnoza);
-#pragma warning restore CS8602 // Dereference of a possibly null reference.
+        #pragma warning restore CS8602
             Wizyty.Remove(w1);
         }
         /// <summary>
-        /// Lekarz anuluje wizyte
+        /// Cancel the appointment by the doctor
         /// </summary>
-        /// <param name="pesel">Pesel pacjenta</param>
-        /// <param name="data">Data wizyty</param>
-        /// <param name="godzina">Godzina wizyty</param>
+        /// <param name="pesel">Patient's PESEL</param>
+        /// <param name="data">Appointment date</param>
+        /// <param name="godzina">Appointment time</param>
         public void AnulujWizyteJakoLekarz(string pesel, DateTime data, TimeSpan godzina)
         {
-#pragma warning disable CS8600 // Converting null literal or possible null value to non-nullable type.
+        #pragma warning disable CS8600 
             Wizyta wizyta = Wizyty.FirstOrDefault(w => w.Pacjent.Pesel == pesel && w.Data == data && w.Godzina == godzina);
-#pragma warning restore CS8600 // Converting null literal or possible null value to non-nullable type.
+        #pragma warning restore CS8600 
             if (wizyta != null)
             {
                 Wizyty.Remove(wizyta);
                 wizyta.Lekarz.Zaplanowane_Wizyty.Remove(new Tuple<DateTime, TimeSpan>(data, godzina));
             }
         }
-
         /// <summary>
-        /// Pacjent anuluje wizyte
+        /// Patient cancels an appointment.
         /// </summary>
-        /// <param name="pesel">Pesel pacjenta</param>
-        /// <param name="data">Data wizyty</param>
-        /// <param name="godzina">Godzina wizyty</param>
+        /// <param name="pesel">Patient's PESEL</param>
+        /// <param name="data">Date of the appointment</param>
+        /// <param name="godzina">Time of the appointment</param>
         public void AnulujWizytePacjent(string pesel, DateTime data, TimeSpan godzina)
         {
-#pragma warning disable CS8600 // Converting null literal or possible null value to non-nullable type.
+        #pragma warning disable CS8600 
             Wizyta wizyta = Wizyty.FirstOrDefault(w => w.Pacjent.Pesel == pesel && w.Data == data && w.Godzina == godzina);
-#pragma warning restore CS8600 // Converting null literal or possible null value to non-nullable type.
+        #pragma warning restore CS8600 
             if (wizyta != null)
             {
                 Wizyty.Remove(wizyta);
@@ -150,60 +154,60 @@ namespace Clinic_Project
             }
         }
         /// <summary>
-        /// Dodaje pacjenta
+        /// Adds a patient to the clinic.
         /// </summary>
-        /// <param name="p1">Pacjent</param>
+        /// <param name="p1">Patient</param>
         public void DodajPacjenta(Pacjent p1)
         {
             if (p1 == null) { return; }
             Pacjenci.Add(p1);
         }
         /// <summary>
-        /// Dodaje konto
+        /// Adds an account.
         /// </summary>
-        /// <param name="pesel">Pesel przypisany do konta</param>
-        /// <param name="haslo">Hasło przypisane do konta</param>
+        /// <param name="pesel">The PESEL associated with the account.</param>
+        /// <param name="haslo">The password associated with the account.</param>
         public void DodajKonto(string pesel, string haslo)
         {
             if (pesel == null || haslo == null) { return; }
             Konta.Add(pesel, haslo);
         }
         /// <summary>
-        /// Dodaje lekarza
+        /// Adds a doctor to the clinic.
         /// </summary>
-        /// <param name="l1">Lekarz</param>
+        /// <param name="doctor">Doctor to be added</param>
         public void DodajLekarza(Lekarz l1)
         {
             if (l1 == null || Lekarze.Find(p => p.Pesel == l1.Pesel) != null) { return; }
             Lekarze.Add(l1);
         }
         /// <summary>
-        /// Usuwa lekarza
+        /// Removes a doctor.
         /// </summary>
-        /// <param name="pesel">Pesel lekarza do usunięcia</param>
+        /// <param name="pesel">PESEL number of the doctor to be removed.</param>
         public void UsunLekarza(string pesel)
         {
-#pragma warning disable CS8600 // Converting null literal or possible null value to non-nullable type.
+        #pragma warning disable CS8600
             Lekarz l1 = Lekarze.Find(p => p.Pesel == pesel);
-#pragma warning restore CS8600 // Converting null literal or possible null value to non-nullable type.
+        #pragma warning restore CS8600 
             if (Lekarze.Find(p => p.Pesel == pesel) == null) { return; }
-#pragma warning disable CS8602 // Dereference of a possibly null reference.
+        #pragma warning disable CS8602 
             Wizyty.RemoveAll(p => p.Lekarz.Pesel == l1.Pesel);
-#pragma warning restore CS8602 // Dereference of a possibly null reference.
-#pragma warning disable CS8604 // Possible null reference argument.
+        #pragma warning restore CS8602 
+        #pragma warning disable CS8604 
             Lekarze.Remove(l1);
-#pragma warning restore CS8604 // Possible null reference argument.
+        #pragma warning restore CS8604 
         }
         /// <summary>
-        /// Usuwa pacjenta
+        /// Removes a patient.
         /// </summary>
-        /// <param name="pesel">Pesel pacjenta do usunięcia</param>
+        /// <param name="pesel">PESEL number of the patient to be removed</param>
         public void UsuńPacjenta(string pesel)
         {
             List<Wizyta> wizytyanulowane = new List<Wizyta>();
-#pragma warning disable CS8600 // Converting null literal or possible null value to non-nullable type.
+        #pragma warning disable CS8600
             Pacjent p1 = Pacjenci.Find(p => p.Pesel == pesel);
-#pragma warning restore CS8600 // Converting null literal or possible null value to non-nullable type.
+        #pragma warning restore CS8600 
             if (Pacjenci.Find(p => p.Pesel == pesel) == null) { return; }
             wizytyanulowane = Wizyty.FindAll(p => p.Pacjent.Pesel == pesel);
 
@@ -212,36 +216,36 @@ namespace Clinic_Project
                 w.Lekarz.Zaplanowane_Wizyty.Remove(new Tuple<DateTime, TimeSpan>(w.Data, w.Godzina));
             }
 
-#pragma warning disable CS8602 // Dereference of a possibly null reference.
+        #pragma warning disable CS8602
             Wizyty.RemoveAll(p => p.Pacjent.Pesel == p1.Pesel);
-#pragma warning restore CS8602 // Dereference of a possibly null reference.
+        #pragma warning restore CS8602 
             Konta.Remove(pesel);
-#pragma warning disable CS8604 // Possible null reference argument.
+        #pragma warning disable CS8604 
             Pacjenci.Remove(p1);
-#pragma warning restore CS8604 // Possible null reference argument.
+            #pragma warning restore CS8604
         }
         /// <summary>
-        /// Wyszukuje historię pacjenta
+        /// Searches for a patient's history
         /// </summary>
-        /// <param name="pesel">Pesel pacjenta</param>
-        /// <returns>Historia pacjenta w placówce</returns>
+        /// <param name="pesel">Patient's pesel</param>
+        /// <returns>Patient's history in the facility</returns>
         public string HistoriaPacjenta(string pesel)
         {
             StringBuilder sb = new();
-#pragma warning disable CS8600 // Converting null literal or possible null value to non-nullable type.
+        #pragma warning disable CS8600 
             Pacjent pacjent = Pacjenci.Find(p => p.Pesel == pesel);
-#pragma warning restore CS8600 // Converting null literal or possible null value to non-nullable type.
-            if (pacjent == null) { return "Brak pacjenta w bazie danych."; }
+        #pragma warning restore CS8600 
+            if (pacjent == null) { return "The patient does not exist in the database."; }
             pacjent.HistoriaWizyt.ForEach(w => sb.AppendLine(w.ToString()));
-            if (sb.ToString() == null) { return "Brak historii"; }
+            if (sb.ToString() == null) { return "History not found";}
             return sb.ToString();
         }
         /// <summary>
-        /// Znajduje wszystkie wizyty lekarza w danym dniu
+        /// Finds all visits of a doctor on a given day
         /// </summary>
-        /// <param name="pesel">Pesel lekarza</param>
-        /// <param name="data">Data wizyty lekarza</param>
-        /// <returns>Lista wizyt</returns>
+        /// <param name="pesel">Doctor's PESEL</param>
+        /// <param name="data">Visit date</param>
+        /// <returns>List of visits</returns>
         public List<Wizyta> LekarzWDanymDniu(string pesel, DateTime data)
         {
 
@@ -249,18 +253,18 @@ namespace Clinic_Project
             return wizytyulekarza;
         }
         /// <summary>
-        /// Wszystkie wizyty
+        /// Returns a list of all appointments in the clinic.
         /// </summary>
-        /// <returns>Lista wszystkich wizyt</returns>
+        /// <returns>List of all appointments</returns>
         public List<Wizyta> WszystkieWizyty()
         {
             return Wizyty;
         }
         /// <summary>
-        /// Wizyty pacjenta
+        /// Patient visits
         /// </summary>
-        /// <param name="pesel">Pesel pacjenta</param>
-        /// <returns>Lista wizyt pacjenta o podanym peselu</returns>
+        /// <param name="pesel">Patient PESEL number</param>
+        /// <returns>List of visits of patient with the given PESEL number</returns>
         public List<Wizyta> WizytyPacjenta(string pesel)
         {
             List<Wizyta> wizyty = new();
@@ -268,9 +272,9 @@ namespace Clinic_Project
             return wizyty;
         }
         /// <summary>
-        /// Zapisanie do pliku XML
+        /// Saves to XML file.
         /// </summary>
-        /// <param name="fname">Nazwa pliku</param>
+        /// <param name="fname">File name</param>
         public void ZapiszDC(string fname)
         {
             using FileStream fs = new(fname, FileMode.Create);
@@ -278,10 +282,10 @@ namespace Clinic_Project
             dc.WriteObject(fs, this);
         }
         /// <summary>
-        /// Odczytanie pliku XML
+        /// Reads an XML file.
         /// </summary>
-        /// <param name="fname">Nazwa pliku</param>
-        /// <returns></returns>
+        /// <param name="fname">Name of the file</param>
+        /// <returns>Contents of the XML file</returns>
         public static Placowka? OdczytDC(string fname)
         {
             if (!File.Exists(fname)) { return null; }
@@ -290,51 +294,51 @@ namespace Clinic_Project
             return dc.ReadObject(fs) as Placowka;
         }
         /// <summary>
-        /// Sortuje wizyty
+        /// Sorts appointments
         /// </summary>
         public void SortujWizyta()
         {
             Wizyty.Sort();
         }
         /// <summary>
-        /// Wyszukuje specjalizacje
+        /// Searches for doctors with a given specialization.
         /// </summary>
-        /// <param name="specjalizacja">Nazwa specjalizacji</param>
-        /// <returns>Lista lekarzy o podanej specjalizacji</returns>
+        /// <param name="specialization">Name of the specialization</param>
+        /// <returns>List of doctors with the given specialization</returns>
         public List<Lekarz> WyszukajSpecjalizacja(string specjalizacja)
         {
             return Lekarze.FindAll(p => p.Specjalizacja.Equals(specjalizacja));
         }
         /// <summary>
-        /// Wyszukuje wszystkie wizyty danego lekarza
+        /// Finds all appointments of a given doctor.
         /// </summary>
-        /// <param name="pesel">Pesel lekarza</param>
-        /// <returns>Lista wszystkich wizyt danego lekarza</returns>
+        /// <param name="pesel">Doctor's PESEL</param>
+        /// <returns>List of all appointments of the given doctor</returns>
         public List<Wizyta> WszystkieWizytyDanegoLekarza(string pesel)
         {
             return Wizyty.FindAll(p => p.Lekarz.Pesel == pesel);
         }
         /// <summary>
-        /// Wszystkie wizyty danej osoby u danego lekarza.
+        /// All visits of a specific person to a specific doctor.
         /// </summary>
-        /// <param name="pesellekarza">Pesel lekarza</param>
-        /// <param name="peselpacjenta">Pesel pacjenta</param>
-        /// <returns>Lista wszystkich wizyt danej osoby u konkretnego lekarza</returns>
+        /// <param name="doctorPesel">Doctor's PESEL</param>
+        /// <param name="patientPesel">Patient's PESEL</param>
+        /// <returns>List of all visits of the specific person to the specific doctor</returns>
         public List<Wizyta> WszystkieWizytyDanejOsobyUDanegoLekarza(string pesellekarza, string peselpacjenta)
         {
             List<Wizyta> w = WszystkieWizytyDanegoLekarza(pesellekarza);
-#pragma warning disable CS8603 // Possible null reference return.
+        #pragma warning disable CS8603 // Possible null reference return.
             if (w == null) { return null; }
-#pragma warning restore CS8603 // Possible null reference return.
+        #pragma warning restore CS8603 // Possible null reference return.
             return w.FindAll(p => p.Pacjent.Pesel == peselpacjenta);
 
         }
         /// <summary>
-        /// Dodaje konto pacjenta jeżel nie jest jeszcze zarejestrowany
+        /// Adds a patient account if they are not registered yet.
         /// </summary>
-        /// <param name="pesel">Pesel pacjenta</param>
-        /// <param name="haslo">Hasło do konta pacjenta</param>
-        /// <returns>true jeżeli pacjent nie ma jeszcze konta lub false jeżeli pacjent posiada już konto</returns>
+        /// <param name="pesel">Patient's PESEL number</param>
+        /// <param name="haslo">Password for the patient's account</param>
+        /// <returns>true if the patient does not have an account yet or false if the patient already has an account</returns>
         public bool HasloRejestracjaPacjent(string pesel, string haslo)
         {
             if (Konta.ContainsKey(pesel))

@@ -9,7 +9,7 @@ namespace Clinic_Project
 {
     [DataContract(IsReference = true)]
     /// <summary>
-    /// Klasa Diagnoza
+    /// Diagnosis class
     /// </summary>
     public class Diagnoza
     {
@@ -18,36 +18,39 @@ namespace Clinic_Project
         string recepta;
 
         [DataMember]
-        /// <summary>Właściwość Wizyta umożliwia dostęp do pola wizyta.
+        /// <summary>
+        /// The Visit property provides access to the visit field.
         /// </summary>
         public Wizyta Wizyta { get => wizyta; set => wizyta = value; }
 
         [DataMember]
-        /// <summary>Właściwość Choroba umożliwia dostęp do pola choroba.
+        /// <summary>
+        /// The Disease property provides access to the disease field.
         /// </summary>
         public string Choroba { get => choroba; set => choroba = value; }
 
         [DataMember]
-        /// <summary>Właściwość Recepta umożliwia dostęp do pola recepta.
+        /// <summary>
+        /// The Prescription property provides access to the prescription field.
         /// </summary>
         public string Recepta { get => recepta; set => recepta = value; }
         /// <summary>
-        /// Konstruktor domyślny klasy Diagnoza.
+        /// Default constructor of the Diagnosis class.
         /// </summary>
-#pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
+        #pragma warning disable CS8618 
         public Diagnoza()
-#pragma warning restore CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
+        #pragma warning restore CS8618
         {
             Wizyta = new();
             choroba = string.Empty;
             recepta = string.Empty;
         }
-        /// <summary>
-        /// Konstruktor parametryczny klasy Diagnoza
+        /// /// <summary>
+        /// Parametric constructor of the Diagnosis class
         /// </summary>
-        /// <param name="wizyta">Wizyta u lekarza</param>
-        /// <param name="choroba">Zdiagnozowana choroba pacjenta</param>
-        /// <param name="recepta">Recepta przypisana do pacjenta</param>
+        /// <param name="visit">Visit a doctor</param>
+        /// <param name="disease">Diagnosed patient disease</param>
+        /// <param name="prescription">Prescription assigned to the patient</param>
         public Diagnoza(Wizyta wizyta, string choroba, string recepta) : this()
         {
             Wizyta = wizyta;
@@ -55,10 +58,10 @@ namespace Clinic_Project
             Recepta = recepta;
         }
         /// <summary>
-        /// Tworzy listę diagnoz.
+        /// Creates a diagnosis list.
         /// </summary>
         /// <returns>
-        /// String który reprezentuje tą instancję.
+        /// String that represents this instance.
         /// </returns>
         public override string ToString()
         {

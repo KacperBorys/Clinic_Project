@@ -11,7 +11,7 @@ namespace Clinic_Project
 {
     public enum EnumPlec { K, M }
     /// <summary>
-    /// Abstrakcyjna klasa Osoba
+    /// Abstract class Person
     /// </summary>
     [DataContract]
     public abstract class Osoba
@@ -23,27 +23,32 @@ namespace Clinic_Project
         private EnumPlec plec;
 
         [DataMember]
-        /// <summary>Właściwość Imie umożliwia dostęp do pola imie.
+        /// <summary>
+        /// The Imie property provides access to the 'imie' field.
         /// </summary>
         public string Imie { get => imie; set => imie = value; }
         [DataMember]
-        /// <summary>Właściwość Nazwisko umożliwia dostęp do pola nazwisko.
+        /// <summary>
+        /// The property "Nazwisko" allows access to the "nazwisko" field.
         /// </summary>
         public string Nazwisko { get => nazwisko; set => nazwisko = value; }
         [DataMember]
-        /// <summary>Właściwość DataUrodzenia umożliwia dostęp do pola dataUrodzenia.
+        /// <summary>
+        /// The DataUrodzenia property allows access to the dataUrodzenia field.
         /// </summary>
         public DateTime DataUrodzenia { get => dataUrodzenia; set => dataUrodzenia = value; }
         [DataMember]
-        /// <summary>Właściwość Plec umożliwia dostęp do pola plec.
+        /// <summary>
+        /// The Plec property allows access to the plec field.
         /// </summary>
         public EnumPlec Plec { get => plec; set => plec = value; }
         [DataMember]
-        /// <summary>Właściwość Pesel umożliwia dostęp do pola pesel.
-        /// <exception cref="ArgumentException">
-        /// Wyjątek jest wyrzucany w przypadku niepoprawnego formatu peselu.
-        /// </exception>
+        /// <summary>
+        /// The Pesel property allows access to the pesel field.
         /// </summary>
+        /// <exception cref="ArgumentException">
+        /// The exception is thrown in case of an incorrect pesel format.
+        /// </exception>
         public string Pesel
         {
             get => pesel;
@@ -51,17 +56,17 @@ namespace Clinic_Project
             {
                 if (!WeryfikujPesel(value))
                 {
-                    throw new ArgumentException("Zły pesel.");
+                    throw new ArgumentException("Wrong PESEL!");
                 }
                 pesel = value;
             }
         }
         /// <summary>
-        /// Kontruktor domyślny klasy Osoba.
+        /// Default constructor of the Person class.
         /// </summary>
-#pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
+        #pragma warning disable CS8618
         public Osoba()
-#pragma warning restore CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
+        #pragma warning restore CS8618
         {
             Imie = string.Empty;
             Nazwisko = string.Empty;
@@ -69,11 +74,11 @@ namespace Clinic_Project
             Pesel = new string('0', 11);
         }
         /// <summary>
-        /// Kontruktor parametryczny klasy Osoba.
+        /// Parameterized constructor of the Person class.
         /// </summary>
-        /// <param name="imie">Imie osoby</param>
-        /// <param name="nazwisko">Nazwisko osoby</param>
-        /// <param name="plec">Płeć osoby</param>
+        /// <param name="imie">Person's first name</param>
+        /// <param name="nazwisko">Person's last name</param>
+        /// <param name="plec">Person's gender</param>
         public Osoba(string imie, string nazwisko, EnumPlec plec) : this()
         {
             Imie = imie;
@@ -81,13 +86,13 @@ namespace Clinic_Project
             Plec = plec;
         }
         /// <summary>
-        /// Konstruktor parametryczny klasy Osoba.
+        /// Parameterized constructor of the Person class.
         /// </summary>
-        /// <param name="imie">Imie osoby</param>
-        /// <param name="nazwisko">Nazwisko osoby</param>
-        /// <param name="dataUrodzenia">Data urodzenia osoby</param>
-        /// <param name="pesel">Pesel osoby</param>
-        /// <param name="plec">Płeć osoby</param>
+        /// <param name="imie">Person's first name</param>
+        /// <param name="nazwisko">Person's last name</param>
+        /// <param name="dataUrodzenia">Person's date of birth</param>
+        /// <param name="pesel">Person's PESEL number</param>
+        /// <param name="plec">Person's gender</param>
         public Osoba(string imie, string nazwisko, string dataUrodzenia, string pesel, EnumPlec plec) : this(imie, nazwisko, plec)
         {
             if (DateTime.TryParseExact(dataUrodzenia,
@@ -100,12 +105,12 @@ namespace Clinic_Project
             Pesel = pesel;
         }
         /// <summary>
-        /// Porównuje bieżące wystąpienie z innym obiektem tego samego typu i zwraca liczbę całkowitą, 
-        /// która wskazuje, czy bieżące wystąpienie poprzedza, 
-        /// następuje po lub występuje w tym samym położeniu, co inny obiekt w porządku sortowania.
+        /// Compares the current instance with another object of the same type and returns an integer
+        /// that indicates whether the current instance precedes, follows, or occurs in the same position
+        /// in the sort order as the other object.
         /// </summary>
-        /// <param name="other">Obiekt, który ma zostać porównany z tym wystąpieniem.</param>
-        /// <returns>Wartość wskazująca względną kolejność porównywanych obiektów. </returns>
+        /// <param name="other">The object to compare with this instance.</param>
+        /// <returns>A value that indicates the relative order of the objects being compared.</returns>
         public int CompareTo(Osoba? other)
         {
             if (other is null) { return 1; }
@@ -114,18 +119,18 @@ namespace Clinic_Project
             return Imie.CompareTo(other.Imie);
         }
         /// <summary>
-        /// Weryfikuje długość i elementy składowe numera pesel za pomocą wyrażenia regularnego .
+        /// Verifies the length and components of the PESEL number using a regular expression.
         /// </summary>
-        /// <param name="pesel">Pesel osoby</param>
+        /// <param name="pesel">PESEL number of the person.</param>
         /// <returns></returns>
         bool WeryfikujPesel(string pesel)
         {
             return Regex.IsMatch(pesel, @"\d{11}");
         }
         /// <summary>
-        /// Nadpisanie metody opisującej obiekt
+        /// Overrides the method that describes the object.
         /// </summary>
-        /// <returns>Zwraca ciąg reprezentujący dany obiekt.</returns>
+        /// <returns>A string that represents the current object.</returns>
         public override string ToString()
         {
             return $"{Imie} {Nazwisko} ({Plec}), {DataUrodzenia:dd-MM-yyyy} ({Pesel})";

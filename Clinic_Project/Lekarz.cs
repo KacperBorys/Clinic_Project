@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 namespace Clinic_Project
 {
     /// <summary>
-    /// Klasa Lekarz dziedzizcąca po klasie Osoba, implementuje interfejs ICloneable
+    /// The Doctor class inherits from the Person class and implements the ICloneable interface
     /// </summary>
     [DataContract]
     public class Lekarz : Osoba, ICloneable
@@ -19,23 +19,26 @@ namespace Clinic_Project
         Dictionary<DayOfWeek, Tuple<TimeSpan, TimeSpan>> godzinyPracy;
         Dictionary<Tuple<DateTime, TimeSpan>, bool> zaplanowane_Wizyty;
         [DataMember]
-        /// <summary>Właściwość Specjalizacja umożliwia dostęp do pola specjalizacja.
+        /// <summary>
+        /// The Specjalizacja property provides access to the specjalizacja field.
         /// </summary>
         public string Specjalizacja { get => specjalizacja; set => specjalizacja = value; }
         [DataMember]
-        /// <summary>Właściwość GodzinyPracy umożliwia dostęp do pola godzinyPracy.
+        /// <summary>
+        /// Property GodzinyPracy allows access to the godzinyPracy field.
         /// </summary>
         public Dictionary<DayOfWeek, Tuple<TimeSpan, TimeSpan>> GodzinyPracy { get => godzinyPracy; set => godzinyPracy = value; }
         [DataMember]
-        /// <summary>Właściwość Zaplanowane_Wizyty umożliwia dostęp do pola zaplanowane_wizyty.
+        /// <summary>
+        /// The Zaplanowane_Wizyty property allows access to the zaplanowane_wizyty field.
         /// </summary>
         public Dictionary<Tuple<DateTime, TimeSpan>, bool> Zaplanowane_Wizyty { get => zaplanowane_Wizyty; set => zaplanowane_Wizyty = value; }
         /// <summary>
-        /// Konstruktor domyślny klasy Lekarz
+        /// Default constructor of the Doctor class
         /// </summary>
-#pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
+#pragma warning disable CS8618 
         public Lekarz()
-#pragma warning restore CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
+#pragma warning restore CS8618
         {
             Specjalizacja = string.Empty;
             GodzinyPracy = new();
@@ -46,24 +49,26 @@ namespace Clinic_Project
             Pesel = "00000000000";
         }
         /// <summary>
-        /// Konstruktor parametrczyny klasy Lekarz
+        /// Parameterized constructor of the Lekarz class.
         /// </summary>
-        /// <param name="imie">Imie lekarza</param>
-        /// <param name="nazwisko">Nazwisko lekarza</param>
-        /// <param name="dataUrodzenia">Data urodzenia lekarza</param>
-        /// <param name="pesel">Pesel lekarza</param>
-        /// <param name="plec">Płeć lekarza</param>
-        /// <exception cref="ArgumentException">Wyjątek zwracany w przypadku ustawienia niepoprawnej daty urodzenia lekarza</exception>
-#pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
+        /// <param name="imie">First name of the doctor</param>
+        /// <param name="nazwisko">Last name of the doctor</param>
+        /// <param name="dataUrodzenia">Date of birth of the doctor</param>
+        /// <param name="pesel">PESEL of the doctor</param>
+        /// <param name="plec">Gender of the doctor</param>
+        /// <exception cref="ArgumentException">Thrown when an invalid date of birth is set for the doctor</exception>
+
+        #pragma warning disable CS8618
         public Lekarz(string imie, string nazwisko, string dataUrodzenia, string pesel, EnumPlec plec)
-#pragma warning restore CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
+        #pragma warning restore CS8618 
+
         {
             if (!DateTime.TryParseExact(dataUrodzenia,
                 new string[] { "dd-MM-yyyy", "dd/MM/yyyy", "dd.MM.yyyy" ,"yyyy.MM.dd", "yyyy/MM/dd", "yyyy-MM-dd"
                 }, null, System.Globalization.DateTimeStyles.None,
                 out DateTime res))
             {
-                throw new ArgumentException("Zła data");
+                throw new ArgumentException("Wrong date!");
             }
             Imie = imie;
             Nazwisko = nazwisko;
@@ -72,18 +77,18 @@ namespace Clinic_Project
             Plec = plec;
         }
         /// <summary>
-        /// Konstruktor parametryczny klasy Lekarz dziedziczący po konstrukotrze bazowym
+        /// Parameterized constructor of the Doctor class that inherits from the base constructor.
         /// </summary>
-        /// <param name="imie">Imie lekarza</param>
-        /// <param name="nazwisko">Nazwisko lekarza</param>
-        /// <param name="dataUrodzenia">Data urodzenia lekarza</param>
-        /// <param name="pesel">Pesel lekarza</param>
-        /// <param name="plec">Płeć lekarza</param>
-        /// <param name="specjalizacja">Specjalizacja lekarza</param>
-        /// <param name="godzinyPracy">Godziny pracy lekarza</param>
-#pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
+        /// <param name="firstName">Doctor's first name</param>
+        /// <param name="lastName">Doctor's last name</param>
+        /// <param name="dateOfBirth">Doctor's date of birth</param>
+        /// <param name="pesel">Doctor's PESEL number</param>
+        /// <param name="gender">Doctor's gender</param>
+        /// <param name="specialization">Doctor's specialization</param>
+        /// <param name="workingHours">Doctor's working hours</param>
+        #pragma warning disable CS8618
         public Lekarz(string imie, string nazwisko, string dataUrodzenia, string pesel, EnumPlec plec, string specjalizacja, Dictionary<DayOfWeek, Tuple<TimeSpan, TimeSpan>> godzinyPracy)
-#pragma warning restore CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
+        #pragma warning restore CS8618 
             : base(imie, nazwisko, dataUrodzenia, pesel, plec)
         {
             Specjalizacja = specjalizacja;
@@ -91,12 +96,12 @@ namespace Clinic_Project
             zaplanowane_Wizyty = new();
         }
         /// <summary>
-        /// Sprawdza czy można umówić wizytę u lekarza w danym dniu o konkretnej godzinie.
+        /// Checks if it is possible to schedule a visit with the doctor on a given date and time.
         /// </summary>
-        /// <param name="data"> Data wizyty</param>
-        /// <param name="godzina">Godzina wizyty</param>
-        /// <returns>Zwraca `true` jeżeli można umówić wizytę lub `false` jeżeli nie można umówić wizyty</returns>
-        /// <exception cref="ArgumentException"> Wyjątek zgłaszany w przypadku niepoprawnej daty wizyty.</exception>
+        /// <param name="date">Visit date</param>
+        /// <param name="time">Visit time</param>
+        /// <returns>Returns true if it is possible to schedule the visit or false if it is not possible to schedule the visit</returns>
+        /// <exception cref="ArgumentException">Thrown when the provided date is invalid.</exception>
         public bool SprawdzCzyMoznaUmowic(string data, TimeSpan godzina)
         {
             if (Zaplanowane_Wizyty == null)
@@ -108,7 +113,7 @@ namespace Clinic_Project
                 }, null, System.Globalization.DateTimeStyles.None,
                 out DateTime res))
             {
-                throw new ArgumentException("Zła data");
+                throw new ArgumentException("Wrong date!");
             }
             if (res < DateTime.Now) { return false; }
             DayOfWeek dzien = res.DayOfWeek;
@@ -117,7 +122,7 @@ namespace Clinic_Project
                 Tuple<TimeSpan, TimeSpan> godzinyPrzyjec = GodzinyPracy[dzien];
                 if ((godzina.Hours >= godzinyPrzyjec.Item1.Hours && godzina.Hours <= godzinyPrzyjec.Item2.Hours) && (godzina.Minutes == 0 || godzina.Minutes == 30))
                 {
-                    // sprawdzenie czy w tej godzinie jest już zaplanowana wizyta
+                    // check if a visit is already scheduled at this time
                     if (Zaplanowane_Wizyty.ContainsKey(Tuple.Create(DateTime.Parse(data), godzina)))
                     {
                         if (Zaplanowane_Wizyty[Tuple.Create(DateTime.Parse(data), godzina)])
@@ -145,10 +150,10 @@ namespace Clinic_Project
             }
         }
         /// <summary>
-        /// Tworzy listę lekarzy.
+        /// Creates a list of doctors.
         /// </summary>
         /// <returns>
-        /// String który reprezentuje tą instancję.
+        /// A string that represents this instance.
         /// </returns>
         public override string ToString()
         {
@@ -160,11 +165,11 @@ namespace Clinic_Project
             return $"{Imie} {Nazwisko}, Specjalizacja: {Specjalizacja}\n{sb}";
         }
         /// <summary>
-        /// Tworzy nowy obiekt, który jest kopią bieżącej instancji.
+        /// Creates a new object that is a copy of the current instance.
         /// </summary>
         /// <returns>
-        /// Nowy obiekt będący kopią tej instancji.
-        /// </returns>
+        /// A new object that is a copy of this instance.
+        /// </returns> 
         public object Clone()
         {
             return MemberwiseClone();

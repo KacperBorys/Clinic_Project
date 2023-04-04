@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace Clinic_Project
 {
+    /// <summary>
+    /// Public class Admin
+    /// </summary>
     [DataContract]
     public class Admin
     {

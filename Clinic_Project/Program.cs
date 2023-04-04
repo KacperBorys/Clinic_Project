@@ -1,7 +1,7 @@
 ﻿using Clinic_Project;
 
 
-Lekarz przykladowyLekarz = new Lekarz("Jan", "Kowalski", "01.01.1980", "12345678901", EnumPlec.M, "Dzieciecy",
+Lekarz przykladowyLekarz = new Lekarz("Jan", "Kowalski", "01.01.1980", "12345678901", EnumPlec.M, "Pediatrician",
             new Dictionary<DayOfWeek, Tuple<TimeSpan, TimeSpan>>
             {
                 { DayOfWeek.Monday, new Tuple<TimeSpan, TimeSpan>(new TimeSpan(8, 0, 0), new TimeSpan(16, 0, 0)) },
@@ -11,7 +11,7 @@ Lekarz przykladowyLekarz = new Lekarz("Jan", "Kowalski", "01.01.1980", "12345678
                 { DayOfWeek.Friday, new Tuple<TimeSpan, TimeSpan>(new TimeSpan(8, 0, 0), new TimeSpan(16, 0, 0)) }
             });
 
-Lekarz przykladowyLekarz1 = new Lekarz("Julia", "Błoń", "01.01.1990", "90312345678", EnumPlec.K, "Dzieciecy",
+Lekarz przykladowyLekarz1 = new Lekarz("Julia", "Błoń", "01.01.1990", "90312345678", EnumPlec.K, "Pediatrician",
             new Dictionary<DayOfWeek, Tuple<TimeSpan, TimeSpan>>
             {
                 { DayOfWeek.Monday, new Tuple<TimeSpan, TimeSpan>(new TimeSpan(8, 0, 0), new TimeSpan(15, 0, 0)) },
@@ -20,7 +20,7 @@ Lekarz przykladowyLekarz1 = new Lekarz("Julia", "Błoń", "01.01.1990", "9031234
                 { DayOfWeek.Thursday, new Tuple<TimeSpan, TimeSpan>(new TimeSpan(8, 0, 0), new TimeSpan(16, 0, 0)) },
                 { DayOfWeek.Friday, new Tuple<TimeSpan, TimeSpan>(new TimeSpan(8, 0, 0), new TimeSpan(16, 0, 0)) }
             });
-Lekarz przykladowyLekarz2 = new Lekarz("Julian", "Kieł", "01.01.1970", "80312345678", EnumPlec.M, "Dzieciecy",
+Lekarz przykladowyLekarz2 = new Lekarz("Julian", "Kieł", "01.01.1970", "80312345678", EnumPlec.M, "Pediatrician",
             new Dictionary<DayOfWeek, Tuple<TimeSpan, TimeSpan>>
             {
                 { DayOfWeek.Monday, new Tuple<TimeSpan, TimeSpan>(new TimeSpan(8, 0, 0), new TimeSpan(15, 0, 0)) },
@@ -29,7 +29,7 @@ Lekarz przykladowyLekarz2 = new Lekarz("Julian", "Kieł", "01.01.1970", "8031234
                 { DayOfWeek.Thursday, new Tuple<TimeSpan, TimeSpan>(new TimeSpan(8, 0, 0), new TimeSpan(16, 0, 0)) },
                 { DayOfWeek.Friday, new Tuple<TimeSpan, TimeSpan>(new TimeSpan(8, 0, 0), new TimeSpan(16, 0, 0)) }
             });
-Lekarz przykladowyLekarz3 = new Lekarz("Patryk", "Opl", "01.01.1990", "90312345677", EnumPlec.M, "Dzieciecy",
+Lekarz przykladowyLekarz3 = new Lekarz("Patryk", "Opl", "01.01.1990", "90312345677", EnumPlec.M, "Pediatrician",
             new Dictionary<DayOfWeek, Tuple<TimeSpan, TimeSpan>>
             {
                 { DayOfWeek.Monday, new Tuple<TimeSpan, TimeSpan>(new TimeSpan(8, 0, 0), new TimeSpan(15, 0, 0)) },
@@ -38,7 +38,7 @@ Lekarz przykladowyLekarz3 = new Lekarz("Patryk", "Opl", "01.01.1990", "903123456
                 { DayOfWeek.Thursday, new Tuple<TimeSpan, TimeSpan>(new TimeSpan(8, 0, 0), new TimeSpan(16, 0, 0)) },
                 { DayOfWeek.Friday, new Tuple<TimeSpan, TimeSpan>(new TimeSpan(8, 0, 0), new TimeSpan(16, 0, 0)) }
             });
-Lekarz przykladowyLekarz4 = new Lekarz("Mariusz", "Pudzianowski", "01.01.1990", "90381234567", EnumPlec.M, "Dzieciecy",
+Lekarz przykladowyLekarz4 = new Lekarz("Mariusz", "Pudzianowski", "01.01.1990", "90381234567", EnumPlec.M, "Pediatrician",
             new Dictionary<DayOfWeek, Tuple<TimeSpan, TimeSpan>>
             {
                 { DayOfWeek.Monday, new Tuple<TimeSpan, TimeSpan>(new TimeSpan(8, 0, 0), new TimeSpan(15, 0, 0)) },
@@ -109,18 +109,19 @@ foreach (Wizyta l in przychodnia.Wizyty)
 }
 przychodnia.UsuńPacjenta("02263001875");
 Console.WriteLine("================");
-#pragma warning disable CS8600 // Converting null literal or possible null value to non-nullable type.
+#pragma warning disable CS8600 
 Lekarz ls = przychodnia.Lekarze.Find(p => p.Pesel == "12345678901");
-#pragma warning restore CS8600 // Converting null literal or possible null value to non-nullable type.
+#pragma warning restore CS8600 
 
 
-#pragma warning disable CS8602 // Dereference of a possibly null reference.
+#pragma warning disable CS8602 
 Console.WriteLine(przychodnia.Lekarze.Find(p => p.Pesel == "12345678901").SprawdzCzyMoznaUmowic("23-02-2023", new TimeSpan(9, 0, 0)));
-#pragma warning restore CS8602 // Dereference of a possibly null reference.
+#pragma warning restore CS8602 
 
-#pragma warning disable CS8602 // Dereference of a possibly null reference.
+#pragma warning disable CS8602 
 Console.WriteLine(przychodnia.Lekarze.Find(p => p.Pesel == "12345678901").SprawdzCzyMoznaUmowic("23-02-2023", new TimeSpan(9, 0, 0)));
-#pragma warning restore CS8602 // Dereference of a possibly null reference.
+#pragma warning restore CS8602 
+
 przychodnia.Lekarze[0].SprawdzCzyMoznaUmowic("23-02-2023", new TimeSpan(9, 0, 0));
 
 foreach (var d in przychodnia.Konta)
@@ -144,11 +145,9 @@ foreach (Wizyta w in przychodnia.WszystkieWizytyDanegoLekarza("12345678901"))
     Console.WriteLine(w);
 }
 
-
-
 przychodnia.DodajWizyte(w8);
-Console.WriteLine(przychodnia.Wizyty.Count.ToString());
 
+Console.WriteLine(przychodnia.Wizyty.Count.ToString());
 
 foreach (Wizyta w in przychodnia.Wizyty)
 {
@@ -186,8 +185,8 @@ Console.WriteLine("=========");
 Console.WriteLine(przychodnia.HistoriaPacjenta("02463001875"));
 
 
-przychodnia.ZakonczWizyte(new(w2, "Zapalenie płuc", "Paracetamol"));
-przychodnia.ZakonczWizyte(new(w6, "Nic", "Nic"));
+przychodnia.ZakonczWizyte(new(w2, "Pneumonia", "Paracetamol"));
+przychodnia.ZakonczWizyte(new(w6, "-", "-"));
 
 Console.WriteLine(przychodnia.HistoriaPacjenta("02463001875"));
 
@@ -202,26 +201,28 @@ Console.WriteLine("=========");
 przychodnia.AnulujWizyteJakoLekarz(p3.Pesel, w4.Data, w4.Godzina);
 
 Console.WriteLine(przychodnia.HistoriaPacjenta("02463001875"));
+
 Console.WriteLine("=========");
-#pragma warning disable CS8602 // Dereference of a possibly null reference.
+
+#pragma warning disable CS8602
 List<Diagnoza> ab = (przychodnia.Pacjenci.Find(p => p.Pesel == "02463001875").HistoriaWizyt);
-#pragma warning restore CS8602 // Dereference of a possibly null reference.
 
-
-
+#pragma warning restore CS8602
 string fname = "przychodnia.xml";
+
 przychodnia.ZapiszDC(fname);
 
-#pragma warning disable CS8600 // Converting null literal or possible null value to non-nullable type.
+#pragma warning disable CS8600 
 Placowka zespolodczyt = Placowka.OdczytDC(fname);
-#pragma warning restore CS8600 // Converting null literal or possible null value to non-nullable type.
-Console.WriteLine("Po odczycie:");
 
-#pragma warning disable CS8602 // Dereference of a possibly null reference.
+#pragma warning restore CS8600
+Console.WriteLine("After reading:");
+
+#pragma warning disable CS8602
 Console.WriteLine(zespolodczyt.HistoriaPacjenta("02463001875"));
-#pragma warning restore CS8602 // Dereference of a possibly null reference.
 
-foreach (Lekarz l in przychodnia.WyszukajSpecjalizacja("Dzieciecy"))
+#pragma warning restore CS8602
+foreach (Lekarz l in przychodnia.WyszukajSpecjalizacja("Pediatrician"))
 {
     Console.WriteLine(l);
 }
@@ -239,7 +240,6 @@ foreach (Pacjent p in zespolodczyt.Pacjenci)
 Console.WriteLine(przykladowyLekarz.SprawdzCzyMoznaUmowic("22-11-2022", new TimeSpan(8, 0, 0)));
 
 Console.WriteLine(zespolodczyt.Konta.Count.ToString());
-
 
 Console.WriteLine(przychodnia.HasloRejestracjaPacjent("12345678901", "123123"));
 
