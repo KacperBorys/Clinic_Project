@@ -60,11 +60,11 @@ namespace Clinic_GUI
         {
             if (OldPassword.Password == "" || NewPassword.Password == "" || RepeatPassword.Password == "")
             {
-                MessageBox.Show("Proszę uzupełnić wszystkie pola");
+                MessageBox.Show("Please fill all fields!", "Error");
             }
             else if (NewPassword.Password != RepeatPassword.Password)
             {
-                MessageBox.Show("Nowe hasło się różni!");
+                MessageBox.Show("The new passwords are different!", "Error");
             }
             else
             {
@@ -74,14 +74,14 @@ namespace Clinic_GUI
                     if (OldPassword.Password.ToString() == p.Konta[ZalogowanyPacjent.Pesel])
                     {
                         p.Konta[ZalogowanyPacjent.Pesel] = NewPassword.Password.ToString();
-                        MessageBox.Show("Hasło zostalo zmienione");
+                        MessageBox.Show("Password has been changed!", "Success");
                         Przychodnia_Pacjent objSecondWindow = new Przychodnia_Pacjent(p, ZalogowanyPacjent.Pesel);
                         this.Visibility = Visibility.Hidden;
                         objSecondWindow.Show();
                     }
                     else
                     {
-                        MessageBox.Show("Stare hasło jest nieprawidłowe");
+                        MessageBox.Show("The password has been changed!", "Success");
                     }
                 }
                 else
@@ -90,14 +90,14 @@ namespace Clinic_GUI
                     if (OldPassword.Password.ToString() == p.Konta[ZalogowanyLekarz.Pesel])
                     {
                         p.Konta[ZalogowanyLekarz.Pesel] = NewPassword.Password.ToString();
-                        MessageBox.Show("Hasło zostalo zmienione");
+                        MessageBox.Show("Password has been changed!", "Success");
                         Przychodnia_Doktor objSecondWindow = new Przychodnia_Doktor(p, ZalogowanyLekarz.Pesel, NewPassword.ToString(), "Lekarz");
                         this.Visibility = Visibility.Hidden;
                         objSecondWindow.Show();
                     }
                     else
                     {
-                        MessageBox.Show("Stare hasło jest nieprawidłowe");
+                        MessageBox.Show("The old password is incorrect!", "Error");
                     }
                 }
             }

@@ -342,20 +342,20 @@ namespace Clinic_GUI
 #pragma warning restore CS8600 // Converting null literal or possible null value to non-nullable type.
             if (wybor_Lekarza == null || wybor_terminu.SelectedIndex == -1 || !calendar.SelectedDate.HasValue)
             {
-                MessageBox.Show("Fill the fields");
+                MessageBox.Show("Fill the fields!", "Error");
             }
             else
             {
                 DateTime data = calendar.SelectedDate.Value.Date;
                 if (data < DateTime.Now)
                 {
-                    MessageBox.Show("Proszę wybrać poprawną datę");
+                    MessageBox.Show("Please select a correct date!", "Error");
                     return;
                 }
 #pragma warning disable CS8604 // Possible null reference argument.
                 p.DodajWizyte(new Wizyta(data.ToString("dd-MM-yyyy"), lekarz, ZalogowanyPacjent, (TimeSpan)wybor_terminu.SelectedItem));
 #pragma warning restore CS8604 // Possible null reference argument.
-                MessageBox.Show("Wizyta została dodana");
+                MessageBox.Show("The visit has been added!", "Success");
             }
 
         }

@@ -497,10 +497,14 @@ namespace Clinic_GUI
         /// <param name="e"></param>
         private void BtnReset_Click(object sender, RoutedEventArgs e)
         {
-            TxtBoxImie.Text = "";
-            TxtBoxNazwisko.Text = "";
-            TxtBoxData_Urodzenia.Text = "";
-            TxtBoxPesel.Text = "";
+            TxtBoxImie.Text = "Jan";
+            TxtBoxNazwisko.Text = "Kowalski";
+            TxtBoxData_Urodzenia.Text = "08.06.1975";
+            TxtBoxPesel.Text = "69463683526";
+            Plec.Text = "Man";
+            TxtBoxPassword.Password = "";
+
+
         }
 
         /// <summary>
@@ -520,17 +524,17 @@ namespace Clinic_GUI
                 }, null, System.Globalization.DateTimeStyles.None,
                 out DateTime res))
                 {
-                    MessageBox.Show("Wrong data format");
+                    MessageBox.Show("Wrong date format!", "Error");
                     return;
                 }
                 if (res > DateTime.Now)
                 {
-                    MessageBox.Show("Wrong date format");
+                    MessageBox.Show("Wrong date format!", "Error");
                     return;
                 }
                 if (!Regex.IsMatch(TxtBoxPesel.Text, @"\d{11}"))
                 {
-                    MessageBox.Show("Wrong Pesel format.");
+                    MessageBox.Show("Wrong pesel format!", "Error");
                     return;
                 }
                 if (Plec.Text == "Woman")
@@ -540,13 +544,13 @@ namespace Clinic_GUI
                     {
                         if (p.HasloRejestracjaPacjent(TxtBoxPesel.Text, TxtBoxPassword.Password))
                         {
-                            MessageBox.Show("Added successfully");
+                            MessageBox.Show("Added successfully!", "Success");
                             p.DodajPacjenta(p1);
                             return;
                         }
                         else
                         {
-                            MessageBox.Show("Something went wrong");
+                            MessageBox.Show("Something went wrong!", "Error");
                             return;
                         }
 
@@ -554,7 +558,7 @@ namespace Clinic_GUI
 
                     else if (p.Pacjenci.Find(pac => pac.Pesel == TxtBoxPesel.Text) != null)
                     {
-                        MessageBox.Show("Account for this PESEL already exists.");
+                        MessageBox.Show("Account for this Pesel already exists!", "Error");
                         return;
                     }
 
@@ -568,14 +572,14 @@ namespace Clinic_GUI
 #pragma warning disable CS8602 // Dereference of a possibly null reference.
                         if (lek.Imie == p1.Imie && lek.Nazwisko == p1.Nazwisko && lek.DataUrodzenia == p1.DataUrodzenia && lek.Plec == p1.Plec && haslo == TxtBoxPassword.Password)
                         {
-                            MessageBox.Show("Added successfully");
+                            MessageBox.Show("Added successfully!", "Success");
                             p.DodajPacjenta(p1);
                             return;
                         }
 
                         else
                         {
-                            MessageBox.Show("You must fill the exact doctor values.");
+                            MessageBox.Show("You must fill the exact doctor values!", "Error");
                             return;
                         }
 #pragma warning restore CS8602 // Dereference of a possibly null reference.
@@ -588,13 +592,13 @@ namespace Clinic_GUI
                     {
                         if (p.HasloRejestracjaPacjent(TxtBoxPesel.Text, TxtBoxPassword.Password))
                         {
-                            MessageBox.Show("Added successfully");
+                            MessageBox.Show("Added successfully!", "Success");
                             p.DodajPacjenta(p2);
                             return;
                         }
                         else
                         {
-                            MessageBox.Show("Something went wrong");
+                            MessageBox.Show("Something went wrong!", "Error");
                             return;
                         }
 
@@ -602,7 +606,7 @@ namespace Clinic_GUI
 
                     else if (p.Pacjenci.Find(pac => pac.Pesel == TxtBoxPesel.Text) != null)
                     {
-                        MessageBox.Show("Account for this PESEL already exists.");
+                        MessageBox.Show("Account for this pesel already exists!", "Error");
                         return;
                     }
 
@@ -616,14 +620,14 @@ namespace Clinic_GUI
 #pragma warning disable CS8602 // Dereference of a possibly null reference.
                         if (lek.Imie == p2.Imie && lek.Nazwisko == p2.Nazwisko && lek.DataUrodzenia == p2.DataUrodzenia && lek.Plec == p2.Plec && haslo == TxtBoxPassword.Password)
                         {
-                            MessageBox.Show("Added successfully");
+                            MessageBox.Show("Added successfully!", "Success");
                             p.DodajPacjenta(p2);
                             return;
                         }
 
                         else
                         {
-                            MessageBox.Show("You must fill the exact doctor values.");
+                            MessageBox.Show("You must fill the exact doctor values!", "Error");
                             return;
                         }
 #pragma warning restore CS8602 // Dereference of a possibly null reference.
@@ -632,7 +636,7 @@ namespace Clinic_GUI
             }
             else
             {
-                MessageBox.Show("Fill the fields");
+                MessageBox.Show("Fill the fields!", "Error");
             }
         }
 
@@ -746,17 +750,17 @@ namespace Clinic_GUI
                     }, null, System.Globalization.DateTimeStyles.None,
                     out DateTime res))
                     {
-                        MessageBox.Show("Wrong data format");
+                        MessageBox.Show("Wrong date format!", "Error");
                         return;
                     }
                     if (res > DateTime.Now)
                     {
-                        MessageBox.Show("Wrong date format");
+                        MessageBox.Show("Wrong date format!", "Error");
                         return;
                     }
                     if (!Regex.IsMatch(TxtBoxPesell.Text, @"^\d{11}$"))
                     {
-                        MessageBox.Show("Wrong Pesel format.");
+                        MessageBox.Show("Wrong Pesel format!", "Error");
                         return;
                     }
 
@@ -815,13 +819,13 @@ namespace Clinic_GUI
                         //if(TxtBoxImiel.Text.Length > 0 && TxtBoxNazwiskol.Text.Length>0 && TxtBoxPesell.Text.Length>0 && TxtBoxData_Urodzenial.)
                         p.DodajLekarza(lek);
                         p.DodajKonto(TxtBoxPesell.Text, TxtBoxPasswordl.Password);
-                        MessageBox.Show("Success");
+                        MessageBox.Show("Success!", "Success");
                         return;
                     }
 
                     else if (p.Lekarze.Find(lek => lek.Pesel == TxtBoxPesell.Text) != null)
                     {
-                        MessageBox.Show("Doctor already exists");
+                        MessageBox.Show("Doctor already exists!", "Error");
                         return;
                     }
 
@@ -889,13 +893,13 @@ namespace Clinic_GUI
                             }
                             //if(TxtBoxImiel.Text.Length > 0 && TxtBoxNazwiskol.Text.Length>0 && TxtBoxPesell.Text.Length>0 && TxtBoxData_Urodzenial.)
                             p.DodajLekarza(lek);
-                            MessageBox.Show("Success");
+                            MessageBox.Show("Success!", "Success");
                             return;
                         }
 
                         else
                         {
-                            MessageBox.Show("You must fill the exact doctor values.");
+                            MessageBox.Show("You must fill the exact doctor values!", "Error");
                             return;
                         }
 
@@ -903,14 +907,14 @@ namespace Clinic_GUI
                 }
                 else
                 {
-                    MessageBox.Show("fill the fields");
+                    MessageBox.Show("fill the fields!", "Error");
                     return;
                 }
 
             }
             else
             {
-                MessageBox.Show("Something went wrong.");
+                MessageBox.Show("Something went wrong!", "Error");
             }
         }
 
@@ -1010,7 +1014,12 @@ namespace Clinic_GUI
         }
         private void BtnResetl_Click(object sender, RoutedEventArgs e)
         {
-
+            TxtBoxImiel.Text = "Jan";
+            TxtBoxNazwiskol.Text = "Kowalski";
+            TxtBoxData_Urodzenial.Text = "08.06.1975";
+            TxtBoxPesell.Text = "69463683526";
+            TxtBoxfunkcja.Text = "Cardiology";
+            Plecl.Text = "Man";
         }
     }
 }

@@ -110,6 +110,7 @@ namespace Clinic_GUI
                 string filename = dlg.FileName;
                 int ad = p.Konta.Count;
                 p.ZapiszDC(filename);
+                
             }
         }
 
@@ -160,22 +161,22 @@ namespace Clinic_GUI
         {
             if (Login_Text.Text.Length > 0 && PasswordHidden.Password.Length == 0)
             {
-                MessageBox.Show("Pole hasło nie może być puste!");
+                MessageBox.Show("The password field cannot be empty!", "Error");
             }
             else if (Login_Text.Text.Length == 0 && PasswordHidden.Password.Length > 0)
             {
-                MessageBox.Show("Pole login nie może być puste!");
+                MessageBox.Show("The login field cannot be empty!", "Error");
             }
             else if (Login_Text.Text.Length == 0 && PasswordHidden.Password.Length == 0)
             {
-                MessageBox.Show("Proszę uzupełnić login i hasło");
+                MessageBox.Show("Please fill your login and password!", "Error");
             }
             else
             {
                 string password = PasswordHidden.Password;
                 if (Login_Text.Text == Admin.haslo && password.ToString() == Admin.haslo && Profesja.Text.ToString() == "ADMIN") //
                 {
-                    MessageBox.Show("Logowanie poprawne");
+                    MessageBox.Show("Login successful!", "Success");
                     Przychodnia_ADMIN objSecondWindow = new Przychodnia_ADMIN(p);
                     this.Visibility = Visibility.Hidden;
                     objSecondWindow.Show();
@@ -189,7 +190,7 @@ namespace Clinic_GUI
                         {
                             if (p.Pacjenci.Find(p => p.Pesel == Login_Text.Text) != null)
                             {
-                                MessageBox.Show("Logowanie poprawne");
+                                MessageBox.Show("Login successful!", "Success");
                                 Przychodnia_Pacjent objSecondWindow = new Przychodnia_Pacjent(p, Login_Text.Text);
                                 this.Visibility = Visibility.Hidden;
                                 objSecondWindow.Show();
@@ -197,7 +198,7 @@ namespace Clinic_GUI
                             }
                             else
                             {
-                                MessageBox.Show("Złe hasło!");
+                                MessageBox.Show("Wrong password!", "Error");
                                 return;
                             }
                         }
@@ -206,7 +207,7 @@ namespace Clinic_GUI
 
                             if (p.Lekarze.Find(p => p.Pesel == Login_Text.Text) != null)
                             {
-                                MessageBox.Show("Logowanie poprawne");
+                                MessageBox.Show("Login successful!", "Success");
                                 Przychodnia_Doktor objSecondWindow = new Przychodnia_Doktor(p, Login_Text.Text, password.ToString(), "Lekarz");
                                 this.Visibility = Visibility.Hidden;
                                 objSecondWindow.Show();
@@ -214,18 +215,18 @@ namespace Clinic_GUI
                             }
                             else
                             {
-                                MessageBox.Show("Złe hasło!");
+                                MessageBox.Show("Wrong password!", "Error");
                             }
                         }
                     }
                     else
                     {
-                        MessageBox.Show("Złe hasło!");
+                        MessageBox.Show("Wrong password!", "Error");
                     }
                 }
                 else
                 {
-                    MessageBox.Show("Złe hasło!");
+                    MessageBox.Show("Wrong password!", "Error");
                 }
             }
         }

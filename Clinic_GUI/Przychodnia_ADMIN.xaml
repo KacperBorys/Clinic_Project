@@ -78,6 +78,9 @@
         <TextBox Visibility="Hidden" x:Name="PasswordUnmask" TextWrapping="Wrap" Text="TextBox" Margin="503,264,47,148" Width="220" Height="20"/>
         <ComboBox Visibility="Hidden" x:Name="Plec" HorizontalAlignment="Left" Height="20" Margin="510,225,0,0" VerticalAlignment="Top" Width="220" SelectedIndex="1" Padding="2">
             <ComboBoxItem>Woman</ComboBoxItem>
+            
+            
+            
             <ComboBoxItem>Man</ComboBoxItem>
         </ComboBox>
         <TextBlock Visibility = "Hidden" x:Name="Txthaslo" HorizontalAlignment="Left" Height="20" Margin="380,264,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="130"><Run Language="pl-pl" Text="Password"/></TextBlock>

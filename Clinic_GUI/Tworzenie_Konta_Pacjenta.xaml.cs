@@ -126,17 +126,17 @@ namespace Clinic_GUI
                 }, null, System.Globalization.DateTimeStyles.None,
                 out DateTime res))
                 {
-                    MessageBox.Show("Wrong data format");
+                    MessageBox.Show("Wrong date format!");
                     return;
                 }
                 if (res > DateTime.Now)
                 {
-                    MessageBox.Show("Wrong date format");
+                    MessageBox.Show("Wrong date format!", "Error");
                     return;
                 }
                 if (!Regex.IsMatch(Pesel.Text, @"^\d{11}$"))
                 {
-                    MessageBox.Show("Wrong Pesel format.");
+                    MessageBox.Show("Wrong Pesel format!", "Error");
                     return;
                 }
                 if (Plec.Text == "Woman")
@@ -146,7 +146,7 @@ namespace Clinic_GUI
                     {
                         if (p.HasloRejestracjaPacjent(Pesel.Text, PasswordHidden.Password))
                         {
-                            MessageBox.Show("Added successfully");
+                            MessageBox.Show("Added successfully!", "Success");
                             p.DodajPacjenta(p1);
                             MainWindow objSecondWindow = new MainWindow(p);
                             this.Visibility = Visibility.Hidden;
@@ -154,7 +154,7 @@ namespace Clinic_GUI
                         }
                         else
                         {
-                            MessageBox.Show("Something went wrong");
+                            MessageBox.Show("Something went wrong!", "Error");
                             return;
                         }
 
@@ -162,7 +162,7 @@ namespace Clinic_GUI
 
                     else if (p.Pacjenci.Find(pac => pac.Pesel == Pesel.Text) != null)
                     {
-                        MessageBox.Show("Account for this PESEL already exists.");
+                        MessageBox.Show("Account for this Pesel already exists!", "Error");
                         return;
                     }
 
@@ -176,7 +176,7 @@ namespace Clinic_GUI
 #pragma warning disable CS8602 // Dereference of a possibly null reference.
                         if (lek.Imie == p1.Imie && lek.Nazwisko == p1.Nazwisko && lek.DataUrodzenia == p1.DataUrodzenia && lek.Plec == p1.Plec && haslo == PasswordHidden.Password)
                         {
-                            MessageBox.Show("Added successfully");
+                            MessageBox.Show("Added successfully!", "Success");
                             p.DodajPacjenta(p1);
                             MainWindow objSecondWindow = new MainWindow(p);
                             this.Visibility = Visibility.Hidden;
@@ -185,7 +185,7 @@ namespace Clinic_GUI
 
                         else
                         {
-                            MessageBox.Show("You must fill the exact doctor values.");
+                            MessageBox.Show("You must fill the exact doctor values!", "Error");
                             return;
                         }
 #pragma warning restore CS8602 // Dereference of a possibly null reference.
@@ -198,7 +198,7 @@ namespace Clinic_GUI
                     {
                         if (p.HasloRejestracjaPacjent(Pesel.Text, PasswordHidden.Password))
                         {
-                            MessageBox.Show("Added successfully");
+                            MessageBox.Show("Added successfully!", "Success");
                             p.DodajPacjenta(p2);
                             MainWindow objSecondWindow = new MainWindow(p);
                             this.Visibility = Visibility.Hidden;
@@ -206,7 +206,7 @@ namespace Clinic_GUI
                         }
                         else
                         {
-                            MessageBox.Show("Something went wrong");
+                            MessageBox.Show("Something went wrong!", "Error");
                             return;
                         }
 
@@ -214,7 +214,7 @@ namespace Clinic_GUI
 
                     else if (p.Pacjenci.Find(pac => pac.Pesel == Pesel.Text) != null)
                     {
-                        MessageBox.Show("Account for this PESEL already exists.");
+                        MessageBox.Show("Account for this Pesel already exists!", "Error");
                         return;
                     }
 
@@ -228,7 +228,7 @@ namespace Clinic_GUI
 #pragma warning disable CS8602 // Dereference of a possibly null reference.
                         if (lek.Imie == p2.Imie && lek.Nazwisko == p2.Nazwisko && lek.DataUrodzenia == p2.DataUrodzenia && lek.Plec == p2.Plec && haslo == PasswordHidden.Password)
                         {
-                            MessageBox.Show("Added successfully");
+                            MessageBox.Show("Added successfully!", "Success");
                             p.DodajPacjenta(p2);
                             MainWindow objSecondWindow = new MainWindow(p);
                             this.Visibility = Visibility.Hidden;
@@ -237,7 +237,7 @@ namespace Clinic_GUI
 
                         else
                         {
-                            MessageBox.Show("You must fill the exact doctor values.");
+                            MessageBox.Show("You must fill the exact doctor values!", "Error");
                             return;
                         }
 #pragma warning restore CS8602 // Dereference of a possibly null reference.
@@ -246,7 +246,7 @@ namespace Clinic_GUI
             }
             else
             {
-                MessageBox.Show("Fill the fields");
+                MessageBox.Show("Fill the fields!", "Error");
             }
         }
         /// <summary>

@@ -387,7 +387,7 @@ namespace Clinic_GUI
                 p.ZakonczWizyte(new(Pacjenci_ListBox.SelectedItem as Wizyta, TxtBoxChoroba.Text.ToString(), TxtBoxRecepta.Text.ToString()));
 #pragma warning restore CS8604 // Possible null reference argument.
 
-                MessageBox.Show("Confirmed.");
+                MessageBox.Show("Confirmed!", "Success");
 
 
                 WidocznoscWydaniaRecepty(false);
@@ -396,7 +396,7 @@ namespace Clinic_GUI
             }
             else
             {
-                MessageBox.Show("Something is missing");
+                MessageBox.Show("Something is missing!", "Error");
             }
         }
 
