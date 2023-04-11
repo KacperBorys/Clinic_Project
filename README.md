@@ -23,8 +23,8 @@ In the main window, click File -> Open -> clinic.xml
 This will allow us to log in as:
 
 ADMIN (login: ADMIN, password: ADMIN) <br>
-PATIENT (login: 02463001875, password: password) <br>
-DOCTOR (login: 02453001875, password: 123123) <br>
+PATIENT (login: 02453001875, password: password) <br>
+DOCTOR (login: 12345678901, password: 123123) <br>
 
 ## Console Application🎮
 ### Person Class👤
