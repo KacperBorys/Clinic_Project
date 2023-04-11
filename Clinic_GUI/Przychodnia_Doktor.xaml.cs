@@ -18,9 +18,8 @@ using System.Windows.Shapes;
 namespace Clinic_GUI
 {
     /// <summary>
-    /// Klasa odpowiadająca za okienko dla zalogowanego lekarza.
+    /// Class responsible for the window for a logged-in doctor.
     /// </summary>
-    /// 
 
     public partial class Przychodnia_Doktor : Window
     {
@@ -28,7 +27,7 @@ namespace Clinic_GUI
         Lekarz ZalogowanyLekarz = new();
 
         /// <summary>
-        /// Domyślny konstruktor tworzący obiekt "p" oraz wyświetlający okienko, w którym można zobaczyć zaplanowane wizyty.
+        /// Default constructor that creates a "p" object and displays a window where you can see the scheduled visits.
         /// </summary>
         public Przychodnia_Doktor()
         {
@@ -41,10 +40,11 @@ namespace Clinic_GUI
         }
 
         /// <summary>
-        /// Konstruktor biorący argument placówka (aby wprowadzane wcześniej dane nie zostały utracone) oraz pesel, który umożliwia określenie nam, kto się zalogował.
+        /// Constructor that takes in arguments "placowka" (to preserve data previously entered) and "login" (to determine who has logged in).
         /// </summary>
         /// <param name="placowka"></param>
         /// <param name="login"></param>
+
         public Przychodnia_Doktor(Placowka placowka, string login) : this()
         {
             p = placowka;
@@ -52,13 +52,12 @@ namespace Clinic_GUI
 
         }
         /// <summary>
-        /// Konstruktor, w którym to chcemy zobaczyć profil lekarza jako pierwszy wraz z jego wartościami takimi jak imie, nazwisko, itd.
+        /// Constructor that displays the doctor's profile with their values such as first name, last name, etc. as the first thing.
         /// </summary>
         /// <param name="placowka"></param>
         /// <param name="login"></param>
         /// <param name="haslo"></param>
         /// <param name="typ"></param>
-        /// 
         public Przychodnia_Doktor(Placowka placowka, string login, string haslo, string typ) : this(placowka, login)
         {
             WidocznoscAppointments(false);
@@ -81,7 +80,7 @@ namespace Clinic_GUI
         }
 
         /// <summary>
-        /// Przycisk służący do wylogowania danego lekarza przekazując argument "p" do MainWindow, aby zmienione dane nie zostały utracone
+        /// Button used to log out the current doctor by passing the "p" argument to MainWindow to prevent loss of changed data
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -93,10 +92,11 @@ namespace Clinic_GUI
         }
 
         /// <summary>
-        /// Po przyciśnięciu pokazuje nam wszystkie zaplanowane wizyty lekarza wraz z różnymi przyciskami.
+        /// When pressed, shows all scheduled visits for the doctor along with various buttons.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
+
         private void BtnWizytyMENU_Click(object sender, RoutedEventArgs e)
         {
             WidocznoscWydaniaRecepty(false);
@@ -107,7 +107,7 @@ namespace Clinic_GUI
         }
 
         /// <summary>
-        /// Po przyciśnięciu pokazuje nam okienko, w którym lekarz będzie wydawał receptę dla określonego pacjenta.
+        /// After clicking the button, this function shows a window where the doctor can issue a prescription for a specific patient.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -118,11 +118,10 @@ namespace Clinic_GUI
             WidocznoscAppointments(false);
             WidocznoscWydaniaRecepty(true);
             Pacjenci_ListBox.ItemsSource = new ObservableCollection<Wizyta>(p.WszystkieWizytyDanegoLekarza(ZalogowanyLekarz.Pesel));
-
         }
 
         /// <summary>
-        /// Przycisk wywołujący okienko z informacjami danego lekarza.
+        /// Button that triggers a window with information about the current doctor.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -149,7 +148,7 @@ namespace Clinic_GUI
         }
 
         /// <summary>
-        /// Przycisk wywołujący możliwość sprawdzenia historii diagnoz określonego pacjenta.
+        /// Button that opens a window for checking the diagnosis history of a particular patient.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -166,12 +165,11 @@ namespace Clinic_GUI
                 WidocznoscWydaniaRecepty(false);
 
                 WszyscyPacjenci_ListBox.ItemsSource = new ObservableCollection<Pacjent>(p.Pacjenci);
-
             }
         }
 
         /// <summary>
-        /// Widoczność textboxów, list, itd. odpowiadających za wizyty
+        /// Function responsible for the visibility of specific TextBoxes, lists, etc. related to appointments.
         /// </summary>
         /// <param name="visibility"></param>
         private void WidocznoscAppointments(bool visibility)
@@ -197,10 +195,9 @@ namespace Clinic_GUI
         }
 
         /// <summary>
-        /// Widoczność textboxów, list, itd. odpowiadających za wydawanie recepty
+        /// Visibility of textboxes, lists, etc. related to issuing a prescription.
         /// </summary>
         /// <param name="visibility"></param>
-        /// 
         private void WidocznoscWydaniaRecepty(bool visibility)
         {
             if (!visibility)
@@ -230,7 +227,7 @@ namespace Clinic_GUI
         }
 
         /// <summary>
-        /// Widoczność textboxów, list, itd. odpowiadających za profil lekarza
+        /// Visibility of textboxes, lists, etc. related to doctor's profile
         /// </summary>
         /// <param name="visibility"></param>
         private void WidocznoscProfilu(bool visibility)
@@ -274,7 +271,7 @@ namespace Clinic_GUI
         }
 
         /// <summary>
-        /// Widoczność textboxów, list, itd. odpowiadających za diagnozy pacjentów
+        /// Visibility of textboxes, lists, etc. related to patient diagnoses
         /// </summary>
         /// <param name="visibility"></param>
         private void WidocznoscHistorii(bool visibility)
@@ -295,11 +292,10 @@ namespace Clinic_GUI
                 WszyscyPacjenci_ListBox.Visibility = Visibility.Hidden;
                 Historia_ListBox.Visibility = Visibility.Hidden;
             }
-
         }
 
         /// <summary>
-        /// Sortuje nam wszystkie wizyty (najpierw po dacie, potem po godzinie)
+        /// Sorts all appointments (first by date, then by time)
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -311,11 +307,10 @@ namespace Clinic_GUI
                 p.SortujWizyta();
                 WizytyLekarza_ListBox.ItemsSource = new ObservableCollection<Wizyta>(p.WszystkieWizytyDanegoLekarza(ZalogowanyLekarz.Pesel));
             }
-
         }
 
         /// <summary>
-        /// Po wciśnięciu przycisku usuwa nam wizytę z danym pacjentem danego dnia.
+        /// When the button is pressed, it removes an appointment with a specific patient on a specific day.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -323,12 +318,12 @@ namespace Clinic_GUI
         {
             if (WizytyLekarza_ListBox.SelectedIndex > -1)
             {
-#pragma warning disable CS8600 // Converting null literal or possible null value to non-nullable type.
+                #pragma warning disable CS8600 
                 Wizyta w = WizytyLekarza_ListBox.SelectedItem as Wizyta;
-#pragma warning restore CS8600 // Converting null literal or possible null value to non-nullable type.
-#pragma warning disable CS8602 // Dereference of a possibly null reference.
+                #pragma warning restore CS8600 
+                #pragma warning disable CS8602 
                 p.AnulujWizyteJakoLekarz(w.Pacjent.Pesel, w.Data, w.Godzina);
-#pragma warning restore CS8602 // Dereference of a possibly null reference.
+                #pragma warning restore CS8602 
 
                 ZalogowanyLekarz.Zaplanowane_Wizyty.Remove(new Tuple<DateTime, TimeSpan>(w.Data, w.Godzina));
 
@@ -337,7 +332,7 @@ namespace Clinic_GUI
         }
 
         /// <summary>
-        /// Po wciśnięciu pokazuje nam wizyty lekarza w danym dniu
+        /// Shows the doctor's appointments for a given day after the button is pressed.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -351,7 +346,7 @@ namespace Clinic_GUI
         }
 
         /// <summary>
-        /// Po wciśnięciu pokazuje nam wszystkie wizyty.
+        /// When pressed, shows us all appointments.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -361,7 +356,7 @@ namespace Clinic_GUI
         }
 
         /// <summary>
-        /// Po wciśnięciu pokazuje nam pacjenta o określonym numerze pesel.
+        /// After pressing the button, shows us the patient with a specific PESEL number.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -374,7 +369,7 @@ namespace Clinic_GUI
         }
 
         /// <summary>
-        /// Po wciśnięciu, usuwa nam wizytę z listy wizyt oraz lekarz wydaje recepte dla danego pacjenta
+        /// After pressing, it removes the visit from the list of visits and the doctor issues a prescription for the patient
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -383,12 +378,11 @@ namespace Clinic_GUI
             if (Pacjenci_ListBox.SelectedIndex > -1 && TxtBoxRecepta.Text.Length > 0 && TxtBoxRecepta.Text.Length > 0)
             {
 
-#pragma warning disable CS8604 // Possible null reference argument.
+                #pragma warning disable CS8604 
                 p.ZakonczWizyte(new(Pacjenci_ListBox.SelectedItem as Wizyta, TxtBoxChoroba.Text.ToString(), TxtBoxRecepta.Text.ToString()));
-#pragma warning restore CS8604 // Possible null reference argument.
+                #pragma warning restore CS8604 
 
                 MessageBox.Show("Confirmed!", "Success");
-
 
                 WidocznoscWydaniaRecepty(false);
                 WizytyLekarza_ListBox.ItemsSource = new ObservableCollection<Wizyta>(p.WszystkieWizytyDanegoLekarza(ZalogowanyLekarz.Pesel));
@@ -401,7 +395,7 @@ namespace Clinic_GUI
         }
 
         /// <summary>
-        /// Ukazuje nam historie diagnóz dla danego pacjenta o określonym numerze pesel.
+        /// Shows us the history of diagnoses for a given patient with a specific PESEL number.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -411,10 +405,10 @@ namespace Clinic_GUI
 
             if (WszyscyPacjenci_ListBox.SelectedIndex > -1)
             {
-#pragma warning disable CS8600 // Converting null literal or possible null value to non-nullable type.
+                #pragma warning disable CS8600 
                 pacjent = WszyscyPacjenci_ListBox.SelectedItem as Pacjent;
-#pragma warning restore CS8600 // Converting null literal or possible null value to non-nullable type.
-#pragma warning disable CS8602 // Dereference of a possibly null reference.
+                #pragma warning restore CS8600 
+                #pragma warning disable CS8602 
                 if (pacjent.HistoriaWizyt.Count == 0)
                 {
                     Historia_ListBox.ItemsSource = null;
@@ -423,15 +417,14 @@ namespace Clinic_GUI
                 {
                     Historia_ListBox.ItemsSource = new ObservableCollection<Diagnoza>(pacjent.HistoriaWizyt);
                 }
-#pragma warning restore CS8602 // Dereference of a possibly null reference.
+                #pragma warning restore CS8602 
             }
-
             if (p.Pacjenci.Find(p => p.Pesel == TxtBoxSzukajPeselHistoria.Text.ToString()) != null)
             {
-#pragma warning disable CS8600 // Converting null literal or possible null value to non-nullable type.
+                #pragma warning disable CS8600 
                 pacjent = p.Pacjenci.Find(p => p.Pesel == TxtBoxSzukajPeselHistoria.Text.ToString());
-#pragma warning restore CS8600 // Converting null literal or possible null value to non-nullable type.
-#pragma warning disable CS8602 // Dereference of a possibly null reference.
+                #pragma warning restore CS8600 
+                #pragma warning disable CS8602 
                 if (pacjent.HistoriaWizyt.Count == 0)
                 {
                     Historia_ListBox.ItemsSource = null;
@@ -440,11 +433,11 @@ namespace Clinic_GUI
                 {
                     Historia_ListBox.ItemsSource = new ObservableCollection<Diagnoza>(pacjent.HistoriaWizyt);
                 }
-#pragma warning restore CS8602 // Dereference of a possibly null reference.
+#pragma warning restore CS8602 
             }
         }
         /// <summary>
-        /// Po wciśnięciu, przekierowuje nas do okienka, w którym możemy zmienić hasło.
+        /// After pressing, it redirects us to the window where we can change the password.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>

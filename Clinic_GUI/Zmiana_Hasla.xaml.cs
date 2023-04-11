@@ -16,7 +16,7 @@ using System.Windows.Shapes;
 namespace Clinic_GUI
 {
     /// <summary>
-    /// W klasie Zmiana_Hasla tworzymy pola Placowka p oraz pole Pacjent ZalogowanyPacjent jak i ZalogowanyLekarz. Tworzymy istancję Pacjenta oraz Lekarza.
+    /// In the Change_Password class, we create the fields Placowka p and the fields Pacjent ZalogowanyPacjent and ZalogowanyLekarz. We instantiate a Patient and a Doctor.
     /// </summary>
     public partial class Zmiana_Hasla : Window
     {
@@ -25,15 +25,15 @@ namespace Clinic_GUI
         Lekarz ZalogowanyLekarz = new();
 
         /// <summary>
-        ///  Konstruktor nieparametryczny tworzący istancję placowki, ładuję skompilowaną stronę.
+        /// Non-parametric constructor creating an instance of the facility and loading the compiled page.
         /// </summary>
         public Zmiana_Hasla()
         {
             InitializeComponent();
         }
         /// <summary>
-        /// KOnstruktor parametryczny posiadający argumenty placowka oraz pacjent. Jeżeli Lekarz chce zmienić hasło to przypisujemy jego obiekt do
-        /// zalogowanego lekarza, natomiast kiedy jest to pacjent to przypisujemy pacjenta do zalogowanego pacjenta.
+        /// Parametric constructor with arguments "placowka" (facility) and "pacjent" (patient). If a doctor wants to change their password, we assign their object to the logged-in doctor,
+        /// and if it's a patient, we assign the patient to the logged-in patient.
         /// </summary>
         /// <param name="p"></param>
         /// <param name="pacjent"></param>
@@ -51,8 +51,8 @@ namespace Clinic_GUI
         }
 
         /// <summary>
-        /// Funkcja odpowiedzialna za końcową zmianę hasła dla pacjenta lub lekarza tylko wtedy gdy wszystkie warunki są spełnione. W przypadku niespełnienia warunków
-        /// dostajemy odpowiednie komunikaty.
+        /// Function responsible for the final password change for a patient or doctor only if all conditions are met. In case the conditions are not met,
+        /// appropriate messages are displayed.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -103,7 +103,7 @@ namespace Clinic_GUI
             }
         }
         /// <summary>
-        /// Funkcja odpowiedzialna za powrót do okna konta pacjenta lub lekarza.
+        /// Function responsible for returning to the patient or doctor account window.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -123,7 +123,7 @@ namespace Clinic_GUI
             }
         }
         /// <summary>
-        /// Funnkcja dzięki, ktorej po naciśnięciu entera kursor przeskakuje do kolejnego pola tekstowego.
+        /// Function that allows jumping to the next text field after pressing the Enter key.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -135,7 +135,7 @@ namespace Clinic_GUI
             }
         }
         /// <summary>
-        /// Funnkcja dzięki, ktorej po naciśnięciu entera kursor przeskakuje do kolejnego pola tekstowego.
+        /// Function that allows jumping to the next text field after pressing the Enter key.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -147,7 +147,7 @@ namespace Clinic_GUI
             }
         }
         /// <summary>
-        /// Funnkcja dzięki, ktorej po naciśnięciu entera kursor przeskakuje do kolejnego pola tekstowego.
+        /// Function that allows jumping to the next text field after pressing the Enter key.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>

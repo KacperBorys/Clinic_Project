@@ -19,14 +19,14 @@ using System.Windows.Shapes;
 namespace Clinic_GUI
 {
     /// <summary>
-    /// Klasa Main
+    /// Main class
     /// </summary>
     public partial class MainWindow : Window
     {
         Placowka p;
 
         /// <summary>
-        /// Kontruktor domyślny tworzący obiekt placowka.
+        /// Default constructor creating an object of the Institution class.
         /// </summary>
         public MainWindow()
         {
@@ -35,16 +35,16 @@ namespace Clinic_GUI
         }
 
         /// <summary>
-        /// Konstruktor pobierający argument placowka.
+        /// Constructor that takes an argument of type Institution.
         /// </summary>
-        /// <param name="placówka"></param>
+        /// <param name="institution"></param>
         public MainWindow(Placowka placówka) : this()
         {
             p = placówka;
         }
 
         /// <summary>
-        /// Przycisk przekierowujący do rejestracji pacjenta.
+        /// Button that redirects to patient registration.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -53,18 +53,16 @@ namespace Clinic_GUI
             Tworzenie_Konta_Pacjenta objSecondWindow = new Tworzenie_Konta_Pacjenta(p);
             this.Visibility = Visibility.Hidden;
             objSecondWindow.Show();
-
         }
 
-
         /// <summary>
-        /// Zmiana wartości comboboxa decyduje o występowaniu przycisku rejestracji konta
+        /// Changing the value of the combobox determines the presence of the account registration button.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void Profesja_ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            //Jesli  profesja rozna od pacjenta to przycisk rejestracji znika. W przeciwnym razie pojawia sie
+            // If the profession is different from the patient, the registration button disappears. Otherwise, it appears.
             if (Profesja.SelectedIndex != 1)
             {
                 ZarejestrujSie_Button.Visibility = Visibility.Hidden;
@@ -76,28 +74,28 @@ namespace Clinic_GUI
         }
 
         /// <summary>
-        /// Pokazuje hasło, jeśli przytrzymamy myszke na przycisku
+        /// Shows the password if we hold the mouse on the button.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void ShowPassword_PreviewMouseDown(object sender, MouseButtonEventArgs e) => ShowPasswordFunction();
 
         /// <summary>
-        /// Chowa hasło, jeśli puscimy myszke z przycisku
+        /// Hides the password when we release the mouse from the button.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void ShowPassword_PreviewMouseUp(object sender, MouseButtonEventArgs e) => HidePasswordFunction();
 
         /// <summary>
-        /// Chowa hasło, jeśli opuścimy pole przycisku
+        /// Hides the password when we leave the button field.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void ShowPassword_MouseLeave(object sender, MouseEventArgs e) => HidePasswordFunction();
 
         /// <summary>
-        /// Przycisk z menu, który umożliwia nam zapisanie pliku.
+        /// A button from the menu that allows us to save a file.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -109,13 +107,12 @@ namespace Clinic_GUI
             {
                 string filename = dlg.FileName;
                 int ad = p.Konta.Count;
-                p.ZapiszDC(filename);
-                
+                p.ZapiszDC(filename);        
             }
         }
 
         /// <summary>
-        /// Przycisk z menu, który umożliwia nam odczytanie pliku typu xml
+        /// Menu button that allows us to read an XML file
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -130,7 +127,7 @@ namespace Clinic_GUI
             }
         }
         /// <summary>
-        /// Funkcja służąca za pokazanie hasła i zmienienia ikonki przycisku.
+        /// Function used to show a password and change the button icon.
         /// </summary>
         private void ShowPasswordFunction()
         {
@@ -139,9 +136,8 @@ namespace Clinic_GUI
             PasswordUnmask.Text = PasswordHidden.Password;
             Eye_Close.Source = new BitmapImage(new Uri(@"img/oko2.jpg", UriKind.Relative));
         }
-
         /// <summary>
-        /// Funkcja służąca za schowanie hasła i zmienienia ikonki przycisku.
+        /// Function used to hide a password and change the button icon.
         /// </summary>
 
         private void HidePasswordFunction()
@@ -152,8 +148,7 @@ namespace Clinic_GUI
         }
 
         /// <summary>
-        /// Funcja służąca za zalogowanie się na dane konto. Jeśli logujący się wybrał ADMIN i wpisał hasło i login admina, to przekierowuje do okienka Przychodnia_ADMIN. Jeśli logujący wybrał pacjenta lub lekarza i wpisał dobre login i hasło
-        /// dla niego, to przekierowywało odpowiednio do okienka Przychodnia_Pacjent lub Przychodnia_Doktor
+        /// Function used for logging in to a specific account. If the user selects ADMIN and enters the admin's login and password, it redirects to the Przychodnia_ADMIN window. If the user selects a patient or doctor and enters the correct login and password for that account, it redirects respectively to the Przychodnia_Pacjent or Przychodnia_Doktor window.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -231,7 +226,7 @@ namespace Clinic_GUI
             }
         }
         /// <summary>
-        /// Po przyciśnięciu entera, przekierowuje nas do kolejnego pola
+        /// After pressing the Enter key, redirects us to the next field.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -244,7 +239,7 @@ namespace Clinic_GUI
         }
 
         /// <summary>
-        /// Po przycisnieciu entera, przekierowuje nad do kolejnego pola.
+        /// After pressing the Enter key, redirects us to the next field.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>

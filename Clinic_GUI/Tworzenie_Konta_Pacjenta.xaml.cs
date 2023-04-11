@@ -9,14 +9,14 @@ namespace Clinic_GUI
 {
 
     /// <summary>
-    /// W klasie Tworzenie_Konta_Pacjenta tworzymy pole Placowka p i tworzymy jej instancję.
+    /// In the class Tworzenie_Konta_Pacjenta we create a field Placowka p and create its instance.
     /// </summary>
     public partial class Tworzenie_Konta_Pacjenta : Window
     {
         Placowka p;
 
         /// <summary>
-        /// Konstruktor nieparametryczny konstruktor.
+        /// Non-parameterized constructor.
         /// </summary>
         public Tworzenie_Konta_Pacjenta()
         {
@@ -25,7 +25,7 @@ namespace Clinic_GUI
         }
 
         /// <summary>
-        /// Konstruktor parametryczny zawierający argument plaówka. Przypisuje go do p.
+        /// Parameterized constructor that takes a Placowka argument and assigns it to p.
         /// </summary>
         /// <param name="placowka"></param>
         public Tworzenie_Konta_Pacjenta(Placowka placowka) : this()
@@ -34,7 +34,7 @@ namespace Clinic_GUI
         }
 
         /// <summary>
-        /// Funckja powodująca zresetowanie wartości wpisanych przez użytkownika i przypisanie konkretnym polom pewnych wartości.
+        /// Function that resets user input values and assigns certain values to specific fields.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -49,7 +49,7 @@ namespace Clinic_GUI
         }
 
         /// <summary>
-        /// Funkcja umożliwiająca powrót do okienka logowania.
+        /// Function that allows the user to return to the login window.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -61,7 +61,7 @@ namespace Clinic_GUI
         }
 
         /// <summary>
-        /// Funkcja umożliwiająca usuwanie wartości z pola tekstowego poprzez podwójne kliknięcie.
+        /// Function that allows the user to delete values from a text field by double-clicking.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -71,7 +71,7 @@ namespace Clinic_GUI
         }
 
         /// <summary>
-        /// Funkcja umożliwiająca usuwanie wartości z pola tekstowego poprzez podwójne kliknięcie.
+        /// Function that allows the user to delete values from a text field by double-clicking.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -82,7 +82,7 @@ namespace Clinic_GUI
         }
 
         /// <summary>
-        /// Funkcja umożliwiająca usuwanie wartości z pola tekstowego poprzez podwójne kliknięcie.
+        /// Function that allows the user to delete values from a text field by double-clicking.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -92,7 +92,7 @@ namespace Clinic_GUI
         }
 
         /// <summary>
-        /// Funkcja umożliwiająca usuwanie wartości z pola tekstowego poprzez podwójne kliknięcie.
+        /// Function that allows the user to delete values from a text field by double-clicking.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -111,14 +111,12 @@ namespace Clinic_GUI
             PasswordHidden.Password = "";
         }
         /// <summary>
-        /// Funkcja powodująca utworzenie konta jeśli wprowadzone przez nas dane spełniają określone warunki.Pola nie mogą być puste iraz nie może już istnieś konto o danym peselu.
-        /// W przypadku błędów pojawi się odpowiedni komunikat. Po prawidłowym utworzeniu konta zostaniemy przekirowani do okienka logowania.
+        /// Function that creates an account if the data entered by the user meets certain conditions. Fields cannot be empty and there cannot already be an account with the entered PESEL number. In case of errors, an appropriate message will appear. After creating an account correctly, the user will be redirected to the login window.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void ZapiszButton_Click(object sender, RoutedEventArgs e)
         {
-
             if (Imie.Text.Length > 0 && Nazwisko.Text.Length > 0 && Data_Urodzenia.Text.Length > 0 && Plec.Text.Length > 0 && Pesel.Text.Length > 0 && PasswordHidden.Password.Length > 0)
             {
                 if (!DateTime.TryParseExact(Data_Urodzenia.Text,
@@ -157,23 +155,20 @@ namespace Clinic_GUI
                             MessageBox.Show("Something went wrong!", "Error");
                             return;
                         }
-
                     }
-
                     else if (p.Pacjenci.Find(pac => pac.Pesel == Pesel.Text) != null)
                     {
                         MessageBox.Show("Account for this Pesel already exists!", "Error");
                         return;
                     }
-
                     else
                     {
-#pragma warning disable CS8600 // Converting null literal or possible null value to non-nullable type.
+                        #pragma warning disable CS8600 
                         Lekarz lek = p.Lekarze.Find(lek => lek.Pesel == p1.Pesel);
-#pragma warning restore CS8600 // Converting null literal or possible null value to non-nullable type.
+                        #pragma warning restore CS8600 
                         string haslo = p.Konta[p1.Pesel];
 
-#pragma warning disable CS8602 // Dereference of a possibly null reference.
+                        #pragma warning disable CS8602 
                         if (lek.Imie == p1.Imie && lek.Nazwisko == p1.Nazwisko && lek.DataUrodzenia == p1.DataUrodzenia && lek.Plec == p1.Plec && haslo == PasswordHidden.Password)
                         {
                             MessageBox.Show("Added successfully!", "Success");
@@ -182,13 +177,12 @@ namespace Clinic_GUI
                             this.Visibility = Visibility.Hidden;
                             objSecondWindow.Show();
                         }
-
                         else
                         {
                             MessageBox.Show("You must fill the exact doctor values!", "Error");
                             return;
                         }
-#pragma warning restore CS8602 // Dereference of a possibly null reference.
+                        #pragma warning restore CS8602 
                     }
                 }
                 else
@@ -209,23 +203,20 @@ namespace Clinic_GUI
                             MessageBox.Show("Something went wrong!", "Error");
                             return;
                         }
-
                     }
-
                     else if (p.Pacjenci.Find(pac => pac.Pesel == Pesel.Text) != null)
                     {
                         MessageBox.Show("Account for this Pesel already exists!", "Error");
                         return;
                     }
-
                     else
                     {
-#pragma warning disable CS8600 // Converting null literal or possible null value to non-nullable type.
+                        #pragma warning disable CS8600 
                         Lekarz lek = p.Lekarze.Find(lek => lek.Pesel == p2.Pesel);
-#pragma warning restore CS8600 // Converting null literal or possible null value to non-nullable type.
+                        #pragma warning restore CS8600 
                         string haslo = p.Konta[p2.Pesel];
 
-#pragma warning disable CS8602 // Dereference of a possibly null reference.
+                        #pragma warning disable CS8602 
                         if (lek.Imie == p2.Imie && lek.Nazwisko == p2.Nazwisko && lek.DataUrodzenia == p2.DataUrodzenia && lek.Plec == p2.Plec && haslo == PasswordHidden.Password)
                         {
                             MessageBox.Show("Added successfully!", "Success");
@@ -234,13 +225,12 @@ namespace Clinic_GUI
                             this.Visibility = Visibility.Hidden;
                             objSecondWindow.Show();
                         }
-
                         else
                         {
                             MessageBox.Show("You must fill the exact doctor values!", "Error");
                             return;
                         }
-#pragma warning restore CS8602 // Dereference of a possibly null reference.
+                        #pragma warning restore CS8602
                     }
                 }
             }
@@ -250,28 +240,28 @@ namespace Clinic_GUI
             }
         }
         /// <summary>
-        /// Funkcja wywołująca w sobie funkcję ShowPasswordFunction() po nakliknięciu przycisku myszy na obrazek oka.
+        /// Function that calls the ShowPasswordFunction() function when the mouse button is clicked on the eye image.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void ShowPassword_PreviewMouseDown(object sender, MouseButtonEventArgs e) => ShowPasswordFunction();
 
         /// <summary>
-        /// Funkcja wywołująca w sobie funkcję ShowPasswordFunction() po odkliknięciu przycisku myszy na obrazek oka.
+        /// Function that calls the ShowPasswordFunction() function when the mouse button is clicked on the eye image.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void ShowPassword_PreviewMouseUp(object sender, MouseButtonEventArgs e) => HidePasswordFunction();
 
         /// <summary>
-        /// Funkcja wywołująca w sobie funkcję ShowPasswordFunction() kiedy kursor jest poza obrazkiem.
+        /// Function that calls the ShowPasswordFunction() function when the cursor is outside the image.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void ShowPassword_MouseLeave(object sender, MouseEventArgs e) => HidePasswordFunction();
 
         /// <summary>
-        /// Funkcja, dzięki, której jesteśmy w stanie zobaczyć wpisane przez nas haslo.
+        /// Function that allows us to see the password we have entered.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -284,7 +274,7 @@ namespace Clinic_GUI
             Eye_Close.Source = new BitmapImage(new Uri(@"/oko2.jpg", UriKind.Relative));
         }
         /// <summary>
-        /// Funkcja, dzięki, której nasze wpisane hasło jest zamaskowane.
+        /// Function that masks our entered password.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -297,7 +287,7 @@ namespace Clinic_GUI
         }
 
         /// <summary>
-        /// Funnkcja dzięki, ktorej po naciśnięciu entera kursor przeskakuje do kolejnego pola tekstowego.
+        /// Function that allows the cursor to move to the next text field after pressing Enter.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -310,7 +300,7 @@ namespace Clinic_GUI
         }
 
         /// <summary>
-        /// Funnkcja dzięki, ktorej po naciśnięciu entera kursor przeskakuje do kolejnego pola tekstowego.
+        /// Function that allows the cursor to move to the next text field after pressing Enter.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -336,7 +326,7 @@ namespace Clinic_GUI
         }
 
         /// <summary>
-        /// Funnkcja dzięki, ktorej po naciśnięciu entera kursor przeskakuje do kolejnego pola tekstowego.
+        /// Function that allows the cursor to move to the next text field after pressing Enter.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -362,7 +352,7 @@ namespace Clinic_GUI
         }
 
         /// <summary>
-        /// Funnkcja dzięki, ktorej po naciśnięciu entera zostaje wykonana funkcja ZApiszButton_CLick.
+        /// Function that triggers the ZapiszButton_Click function when the enter key is pressed.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>

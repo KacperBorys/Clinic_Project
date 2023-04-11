@@ -224,6 +224,7 @@ Console.WriteLine(zespolodczyt.HistoriaPacjenta("02463001875"));
 #pragma warning restore CS8602
 foreach (Lekarz l in przychodnia.WyszukajSpecjalizacja("Pediatrician"))
 {
+     
     Console.WriteLine(l);
 }
 

@@ -13,7 +13,7 @@ namespace Clinic_GUI
 {
 
     /// <summary>
-    /// W klasie Przychodnia_Pacjent tworzymy pola Placowka p oraz pole Pacjent ZalogowanyPacjent oraz tworzymy istancję Pacjenta.
+    /// In the Clinic_Patient class, we create the fields Facility p and the field Patient Logged In, and create an instance of the Patient.
     /// </summary>
     public partial class Przychodnia_Pacjent : Window
     {
@@ -21,8 +21,8 @@ namespace Clinic_GUI
         Pacjent ZalogowanyPacjent = new();
 
         /// <summary>
-        /// Konstruktor nieparametryczny tworzący istancję placowki, ładuję skompilowaną stronę, wywoluje funkcje odpowiedzialne za widoczność poszczególnych
-        /// elementów strony oraz dodaje wizyty zalogowanego pacjenta do listboxa o nazwie Lista.
+        /// Non-parametric constructor creating an instance of the facility, loading the compiled page, calling the functions responsible for the visibility of individual
+        /// elements of the page and adds the logged patient's visits to the listbox named List.
         /// </summary>
         public Przychodnia_Pacjent()
         {
@@ -35,12 +35,11 @@ namespace Clinic_GUI
             Lista.ItemsSource = new ObservableCollection<Wizyta>(p.WizytyPacjenta(ZalogowanyPacjent.Pesel));
         }
         /// <summary>
-        /// Konstruktor parametryczny o argumentach placowka oraz login. Przypisuje zalogowanemu pacjentowi obiekt pacjent znajdowany po peselu. Ustawia widocznosc obiektów znajdujących się 
-        /// w zakładce add visit.
+        /// A parameterized constructor with arguments "placowka" and "login". Assigns to the logged-in patient an object of type "pacjent" found by pesel. Sets the visibility of objects located
+        /// in the "add visit" tab.
         /// </summary>
         /// <param name="placowka"></param>
         /// <param name="login"></param>
-
         public Przychodnia_Pacjent(Placowka placowka, string login) : this()
         {
             ZalogowanyPacjent = placowka.Pacjenci.Find(p => p.Pesel == login);
@@ -49,8 +48,7 @@ namespace Clinic_GUI
         }
 
         /// <summary>
-        /// Konstruktor parametryczny przyjmujący 4 argumenty: placowka, login, haslo oraz typ. wykorzystywany przy zmianie hasła danego użytkownika konta.
-        /// Konstruktor ten ustawia widoczność elementów znajdujących się w zakladce Information.
+        /// A parameterized constructor that takes four arguments: "placowka", "login", "haslo", and "typ". Used when changing the password of a given user account. This constructor sets the visibility of elements located in the "Information" tab.
         /// </summary>
         /// <param name="placowka"></param>
         /// <param name="login"></param>
@@ -62,11 +60,10 @@ namespace Clinic_GUI
             WidocznoscInformations(true);
             WidocznoscVisits(false);
             WidocznoscHistory(false);
-
         }
 
         /// <summary>
-        /// Funkcja przypisana do przycisku Add_visit. Po jego kliknięciu pojawi się okienko, posiadające elementy umozliwiające dodanie wizyty.
+        /// A function assigned to the "Add_visit" button. After clicking the button, a window will appear containing elements that allow you to add a visit.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -76,11 +73,10 @@ namespace Clinic_GUI
             WidocznoscInformations(false);
             WidocznoscVisits(false);
             WidocznoscHistory(false);
-
         }
 
         /// <summary>
-        /// Funkcja przypisana do przycisku Visits_history. Po jego kliknięciu pojawi się okienko, posiadające elementy wskazujące wszystkie wizyty pacjenta.
+        /// A function assigned to the "Visits_history" button. After clicking the button, a window will appear containing elements indicating all patient visits.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -93,7 +89,7 @@ namespace Clinic_GUI
         }
 
         /// <summary>
-        ///  Funkcja przypisana do przycisku Patient_history. Po jego kliknięciu pojawi się okienko, posiadające elementy wskazujące historię wizyt oraz ich diagnozy.
+        /// A function assigned to the "Patient_history" button. After clicking the button, a window will appear containing elements indicating the history of visits and their diagnoses.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -107,7 +103,7 @@ namespace Clinic_GUI
         }
 
         /// <summary>
-        ///  Funkcja przypisana do przycisku Information. Po jego kliknięciu pojawi się okienko, posiadające informacje o pacjencie.
+        /// A function assigned to the "Information" button. After clicking the button, a window will appear containing information about the patient.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -120,7 +116,7 @@ namespace Clinic_GUI
         }
 
         /// <summary>
-        /// Funkcja ta pozwala na wylogowanie się zamknięcie okienka pacjenta oraz powrót
+        /// This function allows the user to log out, close the patient window, and return.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -133,7 +129,7 @@ namespace Clinic_GUI
         }
 
         /// <summary>
-        /// Funkcja ktora przekierowuje nas do okienka zmiany hasła.
+        /// A function that redirects us to the password change window.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -146,7 +142,7 @@ namespace Clinic_GUI
         }
 
         /// <summary>
-        /// Funkckja sortująca wizyty ze względu na ich datę.
+        /// A function for sorting visits by date.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -160,7 +156,7 @@ namespace Clinic_GUI
         }
 
         /// <summary>
-        /// Funkcja umożliwiająca usunięcie wizyty.
+        /// A function that allows the user to delete a visit.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -168,25 +164,25 @@ namespace Clinic_GUI
         {
             if (Lista.SelectedIndex > -1)
             {
-#pragma warning disable CS8600 // Converting null literal or possible null value to non-nullable type.
+                #pragma warning disable CS8600 
                 Wizyta w = Lista.SelectedItem as Wizyta;
-#pragma warning restore CS8600 // Converting null literal or possible null value to non-nullable type.
-#pragma warning disable CS8602 // Dereference of a possibly null reference.
+                #pragma warning restore CS8600 
+                #pragma warning disable CS8602 
                 p.AnulujWizytePacjent(w.Pacjent.Pesel, w.Data, w.Godzina);
-#pragma warning restore CS8602 // Dereference of a possibly null reference.
+                #pragma warning restore CS8602 
                 Lista.ItemsSource = new ObservableCollection<Wizyta>(p.WizytyPacjenta(ZalogowanyPacjent.Pesel));
 
-#pragma warning disable CS8600 // Converting null literal or possible null value to non-nullable type.
+                #pragma warning disable CS8600 
                 Lekarz l = p.Lekarze.Find(doc => doc.Pesel == w.Lekarz.Pesel);
-#pragma warning restore CS8600 // Converting null literal or possible null value to non-nullable type.
-#pragma warning disable CS8602 // Dereference of a possibly null reference.
+                #pragma warning restore CS8600 
+                #pragma warning disable CS8602 
                 l.Zaplanowane_Wizyty.Remove(new Tuple<DateTime, TimeSpan>(w.Data, w.Godzina));
-#pragma warning restore CS8602 // Dereference of a possibly null reference.
+                #pragma warning restore CS8602 
             }
         }
 
         /// <summary>
-        /// Funkcja dzięki, której jesteśmy w stanie zobaczyć wszystkie nasze wizyty.
+        /// Function that allows us to see all of our appointments.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -196,7 +192,7 @@ namespace Clinic_GUI
         }
 
         /// <summary>
-        /// Funkcja umozliwiająca wyszukanie wizyt z danym lekarzem.
+        /// Function that enables searching for appointments with a specific doctor.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -211,14 +207,12 @@ namespace Clinic_GUI
         }
 
         /// <summary>
-        /// Funkcja wiążąca zmianę daty na kalendarzu z comboboxem umożliwiającym wybór lekarza oraz wybór godzinę wizyty. Za każdym razem kiedy zmienimy datę na kalendarzu zmienią się godziny możliwe
-        /// do zarezerwoania na wizytę. Godziny te zależą od lekarza, od dnia tygodnia oraz od ich mozliwej wczęsniej rezerwacji przez inne osoby. Godziny zarezerwowane zostały odrzucone z możliwych do wyboru.
+        /// Function that links the change of date on the calendar with a combobox allowing us to choose a doctor and appointment time. Each time we change the date on the calendar, the possible appointment times change. These times depend on the doctor, the day of the week, and their possible earlier reservation by other people. Reserved times have been excluded from those available for selection.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void Calendar_SelectedDatesChanged(object sender, SelectionChangedEventArgs e)
         {
-
             List<TimeSpan> godziny = new()
             {
                 new TimeSpan(8,0,0),
@@ -239,16 +233,16 @@ namespace Clinic_GUI
                 new TimeSpan(15,30,0)
             };
             Lekarz lekarz = new();
-#pragma warning disable CS8600 // Converting null literal or possible null value to non-nullable type.
+            #pragma warning disable CS8600 
             lekarz = p.Lekarze.Find(w => w.Imie == p.Lekarze[wybor_Lekarza.SelectedIndex].Imie && w.Nazwisko == p.Lekarze[wybor_Lekarza.SelectedIndex].Nazwisko);
-#pragma warning restore CS8600 // Converting null literal or possible null value to non-nullable type.
+            #pragma warning restore CS8600 
 
             if (calendar.SelectedDate != null)
             {
                 DateTime data = calendar.SelectedDate.Value.Date;
-#pragma warning disable CS8602 // Dereference of a possibly null reference.
+                #pragma warning disable CS8602 
                 IEnumerable<Tuple<DateTime, TimeSpan>> krotki = lekarz.Zaplanowane_Wizyty.Where(kvp => kvp.Value == true).Select(kvp => kvp.Key);
-#pragma warning restore CS8602 // Dereference of a possibly null reference.
+                #pragma warning restore CS8602 
                 IEnumerable<TimeSpan> terminy = krotki.Where(kvp => kvp.Item1 == data).Select(kvp => kvp.Item2);
                 terminy.ToList().ForEach(e => godziny.Remove(e));
 
@@ -262,7 +256,6 @@ namespace Clinic_GUI
                     niepracujace.ToList().ForEach(e => godziny.Remove(e));
                     wybor_terminu.ItemsSource = new ObservableCollection<TimeSpan>(godziny);
                 }
-
                 else
                 {
                     wybor_terminu.SelectedIndex = -1;
@@ -271,7 +264,7 @@ namespace Clinic_GUI
             }
         }
         /// <summary>
-        /// Przy zmianie lekarza zmieniają się rownież możliwe terminy do rezerwacji.
+        /// Changing the doctor also changes the possible appointment dates.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -297,16 +290,16 @@ namespace Clinic_GUI
                 new TimeSpan(15,30,0)
             };
             Lekarz lekarz = new();
-#pragma warning disable CS8600 // Converting null literal or possible null value to non-nullable type.
+            #pragma warning disable CS8600 
             lekarz = p.Lekarze.Find(w => w.Pesel == p.Lekarze[wybor_Lekarza.SelectedIndex].Pesel); // this
-#pragma warning restore CS8600 // Converting null literal or possible null value to non-nullable type.
+            #pragma warning restore CS8600 
 
             if (calendar.SelectedDate != null)
             {
                 DateTime data = calendar.SelectedDate.Value.Date;
-#pragma warning disable CS8602 // Dereference of a possibly null reference.
+                #pragma warning disable CS8602 
                 IEnumerable<Tuple<DateTime, TimeSpan>> krotki = lekarz.Zaplanowane_Wizyty.Where(kvp => kvp.Value == true).Select(kvp => kvp.Key);
-#pragma warning restore CS8602 // Dereference of a possibly null reference.
+                #pragma warning restore CS8602 
                 IEnumerable<TimeSpan> terminy = krotki.Where(kvp => kvp.Item1 == data).Select(kvp => kvp.Item2);
                 terminy.ToList().ForEach(e => godziny.Remove(e));
 
@@ -320,7 +313,6 @@ namespace Clinic_GUI
                     niepracujace.ToList().ForEach(e => godziny.Remove(e));
                     wybor_terminu.ItemsSource = new ObservableCollection<TimeSpan>(godziny);
                 }
-
                 else
                 {
                     wybor_terminu.SelectedIndex = -1;
@@ -331,15 +323,15 @@ namespace Clinic_GUI
         }
 
         /// <summary>
-        /// Funkcja sprawdzająca ewentualne braki w uzupełnieniu pól. Jeśli wszystko jest uzupełnione poprawnie zostaje dodana wizyta dla pacjenta.
+        /// A function that checks for any missing fields. If everything is filled in correctly, an appointment is added for the patient.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
-#pragma warning disable CS8600 // Converting null literal or possible null value to non-nullable type.
+            #pragma warning disable CS8600 
             Lekarz lekarz = p.Lekarze.Find(w => w.Imie == p.Lekarze[wybor_Lekarza.SelectedIndex].Imie && w.Nazwisko == p.Lekarze[wybor_Lekarza.SelectedIndex].Nazwisko);
-#pragma warning restore CS8600 // Converting null literal or possible null value to non-nullable type.
+            #pragma warning restore CS8600 
             if (wybor_Lekarza == null || wybor_terminu.SelectedIndex == -1 || !calendar.SelectedDate.HasValue)
             {
                 MessageBox.Show("Fill the fields!", "Error");
@@ -352,16 +344,16 @@ namespace Clinic_GUI
                     MessageBox.Show("Please select a correct date!", "Error");
                     return;
                 }
-#pragma warning disable CS8604 // Possible null reference argument.
+                #pragma warning disable CS8604 
                 p.DodajWizyte(new Wizyta(data.ToString("dd-MM-yyyy"), lekarz, ZalogowanyPacjent, (TimeSpan)wybor_terminu.SelectedItem));
-#pragma warning restore CS8604 // Possible null reference argument.
+                #pragma warning restore CS8604 
                 MessageBox.Show("The visit has been added!", "Success");
             }
 
         }
 
         /// <summary>
-        /// Funkcja ustawiająca konkretne elementy okienka na widoczne lub ukryte.
+        /// A function that sets specific window elements to visible or hidden.
         /// </summary>
         /// <param name="visibility"></param>
         private void WidocznoscHistory(bool visibility)
@@ -379,7 +371,7 @@ namespace Clinic_GUI
         }
 
         /// <summary>
-        /// Funkcja ustawiająca konkretne elementy okienka na widoczne lub ukryte.
+        /// Function setting specific window elements to visible or hidden.
         /// </summary>
         /// <param name="visibility"></param>
         private void WidocznoscVisits(bool visibility)
@@ -409,9 +401,10 @@ namespace Clinic_GUI
         }
 
         /// <summary>
-        /// Funkcja ustawiająca konkretne elementy okienka na widoczne lub ukryte. Dodanie odpowiedniego zdjęcia w zależności od płci logowanej osoby.
+        /// Function setting specific window elements to visible or hidden. Adding appropriate image depending on the gender of the logged-in person.
         /// </summary>
         /// <param name="visibility"></param>
+
         private void WidocznoscInformations(bool visibility)
         {
             if (visibility)
@@ -467,7 +460,7 @@ namespace Clinic_GUI
         }
 
         /// <summary>
-        /// Funkcja ustawiająca konkretne elementy okienka na widoczne lub ukryte.
+        /// Function setting specific window elements to visible or hidden.
         /// </summary>
         /// <param name="visibility"></param>
         private void WidocznoscVisit(bool visibility)
@@ -505,7 +498,6 @@ namespace Clinic_GUI
                 wybor_Lekarza.ItemsSource = new ObservableCollection<Tuple<string, string>>(imie_Nazwisko2);
                 wybor_Lekarza.SelectedIndex = 0;
                 wybor_terminu.ItemsSource = new ObservableCollection<TimeSpan>(godziny);
-
             }
             else
             {

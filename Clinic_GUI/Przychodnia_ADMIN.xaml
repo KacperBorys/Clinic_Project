@@ -27,7 +27,7 @@
                 <ImageBrush ImageSource="/logout 3.png"/>
             </Button.Background>
         </Button>
-        <!--Wszystkie wizyty-->
+        <!--All Appointments-->
         <Calendar Visibility="Hidden" Name="calendar1" 
           Background="White" 
           Foreground="Black" 
@@ -54,21 +54,21 @@
         <Button Visibility="Hidden" x:Name="BtnUsunWizyte" Content="Delete appointment" Margin="359,261,294,123" Click="BtnUsunWizyte_Click"/>
         <Button Visibility="Hidden" x:Name="BtnAllApp" Content="All appointments" Margin="359,312,294,67" Click="BtnAllApp_Click"/>
         <Button Visibility="Hidden" x:Name="BtnDate" Content="Search by date" Margin="359,365,294,10" Click="BtnDate_Click"/>
-        <!--Wszyscy doktorzy-->
+        <!--All Doctors-->
         <Label Visibility="Hidden" x:Name="LblDoctorzy" Content="All doctors" FontSize="25" Margin="499,2,43,368"/>
         <ListBox Visibility="Hidden" x:Name="Doktorzy_ListBox" HorizontalAlignment="Left" Height="194" Margin="400,56,0,0" VerticalAlignment="Top" Width="342" d:ItemsSource="{d:SampleData ItemCount=20}"/>
         <Button Visibility="Hidden" x:Name="BtnUsundoc" Content="Delete doctor" Margin="359,268,294,107" Click="BtnUsundoc_Click"/>
         <Button Visibility="Hidden" x:Name="BtnAllDocs" Content="All doctors" Margin="359,345,294,34" Click="BtnAllDocs_Click"/>
         <Button Visibility="Hidden" x:Name="BtnPesel" Content="Search by PESEL" Margin="594,268,54,107" Click="BtnPesel_Click"/>
         <TextBox Visibility="Hidden" x:Name="Txtboxpesel" TextWrapping="Wrap" Text="Write pesel there" TextAlignment="center" Margin="594,345,43,33"/>
-        <!--Wszyscy pacjenci-->
+        <!--All Patients-->
         <Label Visibility="Hidden" x:Name="LblPacjenci" Content="All patients" FontSize="25" Margin="499,2,43,368"/>
         <ListBox Visibility="Hidden" x:Name="Pacjenci_ListBox" HorizontalAlignment="Left" Height="194" Margin="400,56,0,0" VerticalAlignment="Top" Width="342" d:ItemsSource="{d:SampleData ItemCount=20}"/>
         <Button Visibility="Hidden" x:Name="BtnUsunpacj" Content="Delete patient" Margin="359,268,294,107" Click="BtnUsunpacj_Click"/>
         <Button Visibility="Hidden" x:Name="BtnAllPat" Content="All patients" Margin="359,345,294,34" Click="BtnAllPat_Click"/>
         <Button Visibility="Hidden" x:Name="BtnPeselpac" Content="Search by PESEL" Margin="594,268,54,107" Click="BtnPeselpac_Click"/>
         <TextBox Visibility="Hidden" x:Name="Txtboxpeselpac" TextWrapping="Wrap" Text="Write pesel there" TextAlignment="center" Margin="594,345,43,33"/>
-        <!--Dodaj pacjenta-->
+        <!--Add Patient-->
         <TextBox Visibility="Hidden" x:Name="TxtBoxImie"  HorizontalAlignment="Left" Height="20" Margin="510,80,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="220" Background="#FFCBD2DB" AutomationProperties.IsColumnHeader="True" AutomationProperties.AcceleratorKey="" Cursor="" Text="Jan" />
         <TextBox Visibility="Hidden" x:Name="TxtBoxNazwisko" HorizontalAlignment="Left" Height="20" Margin="510,114,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="220" Background="#FFCBD2DB"  Text="Kowalski"/>
         <TextBox Visibility="Hidden" x:Name="TxtBoxData_Urodzenia" MouseDoubleClick="Click_DataUrodzenia" HorizontalAlignment="Left" Height="20" Margin="510,152,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="220" Background="#FFCBD2DB" Text="08.06.1975"/>
@@ -78,9 +78,6 @@
         <TextBox Visibility="Hidden" x:Name="PasswordUnmask" TextWrapping="Wrap" Text="TextBox" Margin="503,264,47,148" Width="220" Height="20"/>
         <ComboBox Visibility="Hidden" x:Name="Plec" HorizontalAlignment="Left" Height="20" Margin="510,225,0,0" VerticalAlignment="Top" Width="220" SelectedIndex="1" Padding="2">
             <ComboBoxItem>Woman</ComboBoxItem>
-            
-            
-            
             <ComboBoxItem>Man</ComboBoxItem>
         </ComboBox>
         <TextBlock Visibility = "Hidden" x:Name="Txthaslo" HorizontalAlignment="Left" Height="20" Margin="380,264,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="130"><Run Language="pl-pl" Text="Password"/></TextBlock>
@@ -91,7 +88,7 @@
         <TextBlock Visibility = "Hidden" x:Name="Txtplec" HorizontalAlignment="Left" Height="20" Margin="380,225,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="130"><Run Language="pl-pl" Text="Sex"/></TextBlock>
         <Button Visibility="Hidden" x:Name="BtnAddPat" Content="Add patient" HorizontalAlignment="Left" Height="34" Margin="594,373,0,0" VerticalAlignment="Top" Width="100" Background="#FF6EC555" Click="BtnAddPat_Click"/>
         <Label Visibility="Hidden" x:Name="LblAddPat" Content="Add new patient" FontSize="25" Margin="479,13,43,350"/>
-        <!--Dodawanielekarza-->
+        <!--Add Doctor-->
         <TextBox x:Name="TxtBoxImiel"  HorizontalAlignment="Left" Height="20" Margin="433,86,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="188" Background="#FFCBD2DB" AutomationProperties.IsColumnHeader="True" AutomationProperties.AcceleratorKey="" Cursor="" Text="Jan" />
         <TextBox x:Name="TxtBoxNazwiskol" HorizontalAlignment="Left" Height="20" Margin="433,120,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="188" Background="#FFCBD2DB"  Text="Kowalski"/>
         <TextBox x:Name="TxtBoxData_Urodzenial" MouseDoubleClick="Click_DataUrodzenia" HorizontalAlignment="Left" Height="20" Margin="433,158,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="188" Background="#FFCBD2DB" Text="08.06.1975"/>

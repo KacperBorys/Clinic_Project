@@ -23,7 +23,7 @@ using Clinic_Project;
 namespace Clinic_GUI
 {
     /// <summary>
-    /// Okno wyświetlające się po zalogowaniu się jako admin.
+    /// Window displayed after logging in as an administrator.
     /// </summary>
     public partial class Przychodnia_ADMIN : Window
     {
@@ -36,7 +36,7 @@ namespace Clinic_GUI
         }
 
         /// <summary>
-        /// Kontruktor biorący za argument placowke. Po wywołaniu kontruktora pokazuje się okno z wizytami.
+        /// Constructor that takes a facility as an argument. After calling the constructor, a window with visits is displayed.
         /// </summary>
         /// <param name="placowka"></param>
         public Przychodnia_ADMIN(Placowka placowka) : this()
@@ -50,7 +50,7 @@ namespace Clinic_GUI
         }
 
         /// <summary>
-        /// Wylogowanie się przez admina, przekazywany jest argument placowka do kontstruktora okna MainWindow.
+        /// Logout by the administrator, the facility argument is passed to the constructor of the MainWindow window.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -63,7 +63,7 @@ namespace Clinic_GUI
 
 
         /// <summary>
-        /// Po kliknieciu w przycisk Doctors pokazuje sie nam widocznosc przyciskow, kontrolek, itd oraz lista pacjentow
+        /// After clicking the Doctors button, the visibility of buttons, controls, etc. and the list of patients is displayed.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -81,7 +81,7 @@ namespace Clinic_GUI
         }
 
         /// <summary>
-        /// Po kliknieciu w przycisk All apointments pokazują się nam wszystkie wizyty wraz z innymi przyciskami, textboxami.
+        /// After clicking the All appointments button, all visits are displayed along with other buttons and textboxes.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -94,10 +94,9 @@ namespace Clinic_GUI
             WidocznoscDodaniaLekarza(false);
 
             Wizyty_ListBox.ItemsSource = new ObservableCollection<Wizyta>(p.WszystkieWizyty());
-
         }
         /// <summary>
-        /// Wyswietla nam się okno z pacjentami wraz z przyciskami, textboxami.
+        /// Displays a window with patients along with buttons and textboxes.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -113,7 +112,7 @@ namespace Clinic_GUI
         }
 
         /// <summary>
-        /// Przycisk odpowiada za usuniecie konktetnej wizyty jeśli zaznaczona jest ta wizyta w listboxie. 
+        /// The button is responsible for deleting a specific visit if that visit is selected in the listbox.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -122,20 +121,20 @@ namespace Clinic_GUI
             if (Wizyty_ListBox.SelectedIndex > -1)
             {
                 Wizyta? w = Wizyty_ListBox.SelectedItem as Wizyta;
-#pragma warning disable CS8602 // Dereference of a possibly null reference.
+                #pragma warning disable CS8602 
                 p.AnulujWizytePacjent(w.Pacjent.Pesel, w.Data, w.Godzina);
-#pragma warning restore CS8602 // Dereference of a possibly null reference.
+                #pragma warning restore CS8602 
                 Wizyty_ListBox.ItemsSource = new ObservableCollection<Wizyta>(p.WszystkieWizyty());
 
                 Lekarz? l = p.Lekarze.Find(dok => dok.Pesel == w.Lekarz.Pesel);
-#pragma warning disable CS8602 // Dereference of a possibly null reference.
+                #pragma warning disable CS8602 
                 l.Zaplanowane_Wizyty.Remove(new Tuple<DateTime, TimeSpan>(w.Data, w.Godzina));
-#pragma warning restore CS8602 // Dereference of a possibly null reference.
+                #pragma warning restore CS8602 
             }
         }
 
         /// <summary>
-        /// Funkcja odpowiadajaca za widocznosc konkretnych textboxow, przyciskow, itd.
+        /// The function responsible for the visibility of specific textboxes, buttons, etc.
         /// </summary>
         /// <param name="visibility"></param>
 
@@ -162,7 +161,7 @@ namespace Clinic_GUI
         }
 
         /// <summary>
-        /// Funkcja odpowiadajaca za widocznosc konkretnych textboxow, przyciskow, itd.
+        /// The function responsible for the visibility of specific textboxes, buttons, etc.
         /// </summary>
         /// <param name="visibility"></param>
 
@@ -189,9 +188,9 @@ namespace Clinic_GUI
 
             }
         }
-
+        
         /// <summary>
-        /// Funkcja odpowiadajaca za widocznosc konkretnych textboxow, przyciskow, itd.
+        /// A function that controls the visibility of specific textboxes, buttons, etc.
         /// </summary>
         /// <param name="visibility"></param>
 
@@ -206,7 +205,6 @@ namespace Clinic_GUI
                 Txtboxpeselpac.Visibility = Visibility.Visible;
                 Pacjenci_ListBox.Visibility = Visibility.Visible;
                 BtnUsunpacj.Visibility = Visibility.Visible;
-
             }
             else
             {
@@ -220,7 +218,7 @@ namespace Clinic_GUI
         }
 
         /// <summary>
-        /// Funkcja odpowiadajaca za widocznosc konkretnych textboxow, przyciskow, itd.
+        /// Function responsible for visibility of specific textboxes, buttons, etc.
         /// </summary>
         /// <param name="visibility"></param>
 
@@ -267,7 +265,7 @@ namespace Clinic_GUI
         }
 
         /// <summary>
-        /// Przycisk odpowiadający za ukazanie wizyt w konkretnym dniu.
+        /// Button responsible for showing appointments on a specific day.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -280,7 +278,7 @@ namespace Clinic_GUI
         }
 
         /// <summary>
-        /// Przycisk odpowiadajacy za pokazanie wszystkich wizyt
+        /// Button responsible for showing all appointments.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -290,7 +288,7 @@ namespace Clinic_GUI
         }
 
         /// <summary>
-        /// Przycisk odpowiadajacy za usuniecie doktora, związanego z nim wizyt oraz konta
+        /// Button responsible for deleting a doctor, associated appointments, and account.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -298,23 +296,23 @@ namespace Clinic_GUI
         {
             if (Doktorzy_ListBox.SelectedIndex > -1)
             {
-#pragma warning disable CS8600 // Converting null literal or possible null value to non-nullable type.
+                #pragma warning disable CS8600 
                 Lekarz lek = Doktorzy_ListBox.SelectedItem as Lekarz;
-#pragma warning restore CS8600 // Converting null literal or possible null value to non-nullable type.
-#pragma warning disable CS8600 // Converting null literal or possible null value to non-nullable type.
-#pragma warning disable CS8602 // Dereference of a possibly null reference.
+                #pragma warning restore CS8600
+                #pragma warning disable CS8600 
+                #pragma warning disable CS8602 
                 Lekarz l = p.Lekarze.Find(m => m.Pesel == lek.Pesel);
-#pragma warning restore CS8602 // Dereference of a possibly null reference.
-#pragma warning restore CS8600 // Converting null literal or possible null value to non-nullable type.
-#pragma warning disable CS8602 // Dereference of a possibly null reference.
+                #pragma warning restore CS8602 
+                #pragma warning restore CS8600 
+                #pragma warning disable CS8602 
                 p.UsunLekarza(l.Pesel);
-#pragma warning restore CS8602 // Dereference of a possibly null reference.
+                #pragma warning restore CS8602 
                 Doktorzy_ListBox.ItemsSource = new ObservableCollection<Lekarz>(p.Lekarze);
             }
         }
 
         /// <summary>
-        /// Przycisk odpowiadający za pokazanie wszystkich doktorów w listboxie
+        /// Button that shows all the doctors in the listbox.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -328,7 +326,7 @@ namespace Clinic_GUI
         }
 
         /// <summary>
-        /// Przycisk odpowiadajacy za wyszukanie doktora o określonym peselu.
+        /// Button responsible for searching for a doctor with a specific PESEL.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -341,7 +339,7 @@ namespace Clinic_GUI
         }
 
         /// <summary>
-        /// Przycisk odpowiadający za usunięcie pacjęta wraz z jego wizytami oraz kontem
+        /// The button responsible for deleting a patient along with their appointments and account.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -349,42 +347,41 @@ namespace Clinic_GUI
         {
             if (Pacjenci_ListBox.SelectedIndex > -1)
             {
-#pragma warning disable CS8600 // Converting null literal or possible null value to non-nullable type.
+#pragma warning disable CS8600 
                 Pacjent pac = Pacjenci_ListBox.SelectedItem as Pacjent;
-#pragma warning restore CS8600 // Converting null literal or possible null value to non-nullable type.
-#pragma warning disable CS8600 // Converting null literal or possible null value to non-nullable type.
-#pragma warning disable CS8602 // Dereference of a possibly null reference.
+                #pragma warning restore CS8600 
+                #pragma warning disable CS8600 
+                #pragma warning disable CS8602 
                 Pacjent pa = p.Pacjenci.Find(m => m.Pesel == pac.Pesel);
-#pragma warning restore CS8602 // Dereference of a possibly null reference.
-#pragma warning restore CS8600 // Converting null literal or possible null value to non-nullable type.
+                #pragma warning restore CS8602 
+                #pragma warning restore CS8600 
 
 
                 List<Wizyta> wizytyanulowane = new List<Wizyta>();
-#pragma warning disable CS8602 // Dereference of a possibly null reference.
+                #pragma warning disable CS8602 
                 wizytyanulowane = p.Wizyty.FindAll(p => p.Pacjent.Pesel == pa.Pesel);
-#pragma warning restore CS8602 // Dereference of a possibly null reference.
+                #pragma warning restore CS8602 
 
                 foreach (Wizyta w in wizytyanulowane)
                 {
                     Lekarz l = w.Lekarz;
-#pragma warning disable CS8600 // Converting null literal or possible null value to non-nullable type.
+                    #pragma warning disable CS8600 
                     Lekarz test = p.Lekarze.Find(p => p.Pesel == w.Lekarz.Pesel);
-#pragma warning restore CS8600 // Converting null literal or possible null value to non-nullable type.
-#pragma warning disable CS8602 // Dereference of a possibly null reference.
+                    #pragma warning restore CS8600 
+                    #pragma warning disable CS8602 
                     test.Zaplanowane_Wizyty.Remove(new Tuple<DateTime, TimeSpan>(w.Data, w.Godzina));
-#pragma warning restore CS8602 // Dereference of a possibly null reference.
+                    #pragma warning restore CS8602 
                 }
 
-#pragma warning disable CS8602 // Dereference of a possibly null reference.
+                #pragma warning disable CS8602 
                 p.UsuńPacjenta(pa.Pesel);
-#pragma warning restore CS8602 // Dereference of a possibly null reference.
+                #pragma warning restore CS8602 
                 Pacjenci_ListBox.ItemsSource = new ObservableCollection<Pacjent>(p.Pacjenci);
-
             }
         }
 
         /// <summary>
-        /// Przycisk odpowiadający za wyszukanie pacjenta o danym peselu
+        /// Button responsible for searching for a patient with a specified PESEL number.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -397,7 +394,7 @@ namespace Clinic_GUI
         }
 
         /// <summary>
-        /// Przycisk odpowiadający za ukazanie wszystkich pacjentów
+        /// The button that shows all patients.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -407,7 +404,7 @@ namespace Clinic_GUI
         }
 
         /// <summary>
-        /// Przycisk resetujący dane wprowadzone.
+        /// Button that resets all the input data.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -417,7 +414,7 @@ namespace Clinic_GUI
         }
 
         /// <summary>
-        /// Ustawia wartość w Textboxie na ""
+        /// Sets the value in the Textbox to ""
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -428,7 +425,7 @@ namespace Clinic_GUI
         }
 
         /// <summary>
-        /// Ustawia wartość w Textboxie na ""
+        /// Sets the value of the Textbox to ""
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -439,7 +436,7 @@ namespace Clinic_GUI
         }
 
         /// <summary>
-        /// Ustawia wartość w Textboxie na ""
+        /// Sets the value of a Textbox to an empty string.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -450,7 +447,7 @@ namespace Clinic_GUI
         }
 
         /// <summary>
-        /// Ustawia wartość w Textboxie na ""
+        /// Sets the value in the Textbox to "" (empty string).
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -461,7 +458,7 @@ namespace Clinic_GUI
         }
 
         /// <summary>
-        /// Po kliknięciu zmienia nam widoczność poszczególnych textboxów, napisów, itd. ""
+        /// Changes the visibility of specific textboxes, buttons, etc. upon clicking.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -477,7 +474,7 @@ namespace Clinic_GUI
         }
 
         /// <summary>
-        /// Po kliknięciu zmienia nam widoczność poszczególnych textboxów, napisów, itd. ""
+        /// Changes the visibility of specific textboxes, buttons, etc. upon clicking.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -491,7 +488,7 @@ namespace Clinic_GUI
         }
 
         /// <summary>
-        /// Resetuje nam wartości z Textboxów imie, nazwisko, dataurodzenia i pesel na  ""
+        /// Resets the values in the first name, last name, date of birth, and PESEL Textboxes to ""
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -503,14 +500,12 @@ namespace Clinic_GUI
             TxtBoxPesel.Text = "69463683526";
             Plec.Text = "Man";
             TxtBoxPassword.Password = "";
-
-
         }
 
         /// <summary>
-        /// Przycisk odpowiadający za dodanie nowego pacjenta. Jeśli istnieje pacjent o takim peselu, to nie tworzy nam pacjenta wraz z kontem.
-        /// Jeśli istnieje lekarz o danym peselu i nie istnieje pacjent, to jeśli dane wprowadzone do textboxów są odpowiednio takie same jak atrybuty lekarza, to dodaje nam pacjenta, lecz nie tworzy nam nowego konta
-        /// (czyli będziemy mogli zalogować się z tego samego pesela i hasła na konto pacjent i lekarz. Natomiast jeśli nie istnieje pacjent i lekarz o danym peselu, to tworzy nam konto wraz z pacjentem.
+        /// Button responsible for adding a new patient. If a patient with the same PESEL already exists, a new patient with an account will not be created.
+        /// If a doctor with the same PESEL exists and there is no patient with the given PESEL, and the data entered in the textboxes is the same as the doctor's attributes, a new patient is added but no new account is created
+        /// (which means that we will be able to log in with the same PESEL and password to the patient and doctor account). If there is no patient and doctor with the given PESEL, a new account with a patient is created.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -553,36 +548,31 @@ namespace Clinic_GUI
                             MessageBox.Show("Something went wrong!", "Error");
                             return;
                         }
-
                     }
-
                     else if (p.Pacjenci.Find(pac => pac.Pesel == TxtBoxPesel.Text) != null)
                     {
                         MessageBox.Show("Account for this Pesel already exists!", "Error");
                         return;
                     }
-
                     else
                     {
-#pragma warning disable CS8600 // Converting null literal or possible null value to non-nullable type.
+                        #pragma warning disable CS8600 
                         Lekarz lek = p.Lekarze.Find(lek => lek.Pesel == p1.Pesel);
-#pragma warning restore CS8600 // Converting null literal or possible null value to non-nullable type.
+                        #pragma warning restore CS8600 
                         string haslo = p.Konta[p1.Pesel];
-
-#pragma warning disable CS8602 // Dereference of a possibly null reference.
+                        #pragma warning disable CS8602 
                         if (lek.Imie == p1.Imie && lek.Nazwisko == p1.Nazwisko && lek.DataUrodzenia == p1.DataUrodzenia && lek.Plec == p1.Plec && haslo == TxtBoxPassword.Password)
                         {
                             MessageBox.Show("Added successfully!", "Success");
                             p.DodajPacjenta(p1);
                             return;
                         }
-
                         else
                         {
                             MessageBox.Show("You must fill the exact doctor values!", "Error");
                             return;
                         }
-#pragma warning restore CS8602 // Dereference of a possibly null reference.
+                        #pragma warning restore CS8602 
                     }
                 }
                 else
@@ -601,36 +591,31 @@ namespace Clinic_GUI
                             MessageBox.Show("Something went wrong!", "Error");
                             return;
                         }
-
                     }
-
                     else if (p.Pacjenci.Find(pac => pac.Pesel == TxtBoxPesel.Text) != null)
                     {
                         MessageBox.Show("Account for this pesel already exists!", "Error");
                         return;
                     }
-
                     else
                     {
-#pragma warning disable CS8600 // Converting null literal or possible null value to non-nullable type.
+                        #pragma warning disable CS8600 
                         Lekarz lek = p.Lekarze.Find(lek => lek.Pesel == p2.Pesel);
-#pragma warning restore CS8600 // Converting null literal or possible null value to non-nullable type.
+                        #pragma warning restore CS8600 
                         string haslo = p.Konta[p2.Pesel];
-
-#pragma warning disable CS8602 // Dereference of a possibly null reference.
+                        #pragma warning disable CS8602 
                         if (lek.Imie == p2.Imie && lek.Nazwisko == p2.Nazwisko && lek.DataUrodzenia == p2.DataUrodzenia && lek.Plec == p2.Plec && haslo == TxtBoxPassword.Password)
                         {
                             MessageBox.Show("Added successfully!", "Success");
                             p.DodajPacjenta(p2);
                             return;
                         }
-
                         else
                         {
                             MessageBox.Show("You must fill the exact doctor values!", "Error");
                             return;
                         }
-#pragma warning restore CS8602 // Dereference of a possibly null reference.
+                        #pragma warning restore CS8602
                     }
                 }
             }
@@ -641,12 +626,11 @@ namespace Clinic_GUI
         }
 
         /// <summary>
-        /// Funkcja sprawdza nam, czu godzina spełnia określone warunki.
+        /// This function checks if a given time satisfies certain conditions.
         /// </summary>
-        /// <param name="t1"></param>
-        /// <param name="t2"></param>
-        /// <returns>Zwraca nam fałsz, jeśli godzina wykracza poza godziny, w których przychodnia pracuje. Fałsz zwraca nam też, gdy nie przekonwertuje nam wartości na timespan lub godzina nie jest typu 15:00 i 15:30, a np. 15:34.
-        /// W innym przypadku zwraca nam prawdę.</returns>
+        /// <param name="t1">The start time of working hours at the clinic.</param>
+        /// <param name="t2">The end time of working hours at the clinic.</param>
+        /// <returns>Returns false if the time is outside the working hours of the clinic. It also returns false if it cannot convert the value to a TimeSpan or the time is not of the type 15:00 and 15:30, but for example 15:34. In all other cases, it returns true.</returns>
 
         private bool SprawdzGodzine(string t1, string t2)
         {
@@ -671,7 +655,6 @@ namespace Clinic_GUI
                 {
                     return true;
                 }
-
             }
             else
             {
@@ -680,10 +663,10 @@ namespace Clinic_GUI
         }
 
         /// <summary>
-        /// Funkcja zamienia nam czas ze stringa na timespan. Jeśli wartością jest "", to zwraca nam 12:00.
+        /// This function converts a time in string format to a TimeSpan object. If the input string is empty, it returns a TimeSpan representing 12:00.
         /// </summary>
-        /// <param name="czas"></param>
-        /// <returns></returns>
+        /// <param name="czas">A string representing a time value.</param>
+        /// <returns>A TimeSpan object representing the input time value. If the input value cannot be converted to a valid time or is an empty string, it returns a TimeSpan representing 12:00.</returns>
         private TimeSpan zamianaczasu(string czas)
         {
             TimeSpan t = new();
@@ -702,10 +685,11 @@ namespace Clinic_GUI
         }
 
         /// <summary>
-        /// Najbardziej zaawansowany przycisk w programie. Jeśli dla każdej pary godzin (jedna para to jeden dzień, czyli np. poniedziałek) funkcja SprawdzGodzine zwróci prawdę, 
-        /// to wykorzystujemy funkcję zamianaczasu dla każdej godziny. Następnie jeśli wartości w textboxach są uzupełnione oraz nie istnieje lekarz o konkretnym peselu, bądź nie istnieje lekarz (ale istnieje pacjent), którego wszystkie wartości zostały
-        /// wprowadzone w textboxach takie jakie ma (np. imie z textboxu odpowiada imieniu pacjenta), to tworzy nam lekarza wraz z godzinami, w których pracuje. Jeśli w danym dniu nie pracuje (czyli została wprowadzona wartość "" w Textboxie
-        /// pn1 oraz Textboxie pn2, to usuwa nam poszczególny dzień tygodnia ze słownika odpowiadającego za przechowywanie godzin, w których lekarz pracuje).
+        /// The most advanced button in the program. If the SprawdzGodzine function returns true for each hour pair (one pair is one day, e.g. Monday),
+        /// then we use the zamianaczasu function for each hour. Then, if the values in the textboxes are filled in and there is no doctor with a specific PESEL,
+        /// or there is no doctor (but there is a patient) whose values in the textboxes match those already stored (e.g. the name in the textbox matches the patient's name),
+        /// it creates a doctor with the hours they work. If they don't work on a particular day (i.e. the value "" has been entered in the pn1 and pn2 textboxes),
+        /// it removes the given day of the week from the dictionary that stores the doctor's working hours.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -740,9 +724,6 @@ namespace Clinic_GUI
                 TimeSpan tim12 = zamianaczasu(TxtBoxsob2.Text);
                 TimeSpan tim13 = zamianaczasu(TxtBoxnd1.Text);
                 TimeSpan tim14 = zamianaczasu(TxtBoxnd2.Text);
-
-
-
                 if (TxtBoxImiel.Text.Length > 0 && TxtBoxNazwiskol.Text.Length > 0 && TxtBoxData_Urodzenial.Text.Length > 0 && Plecl.Text.Length > 0 && TxtBoxPesell.Text.Length > 0 && TxtBoxPasswordl.Password.Length > 0 && TxtBoxfunkcja.Text.Length > 0)
                 {
                     if (!DateTime.TryParseExact(TxtBoxData_Urodzenial.Text,
@@ -822,20 +803,17 @@ namespace Clinic_GUI
                         MessageBox.Show("Success!", "Success");
                         return;
                     }
-
                     else if (p.Lekarze.Find(lek => lek.Pesel == TxtBoxPesell.Text) != null)
                     {
                         MessageBox.Show("Doctor already exists!", "Error");
                         return;
                     }
-
                     else
                     {
-#pragma warning disable CS8600 // Converting null literal or possible null value to non-nullable type.
+                        #pragma warning disable CS8600 
                         Pacjent pac = p.Pacjenci.Find(p => p.Pesel == TxtBoxPesell.Text);
-#pragma warning restore CS8600 // Converting null literal or possible null value to non-nullable type.
+                        #pragma warning restore CS8600 
                         EnumPlec plecc = new();
-
                         if (Plecl.Text == "Woman")
                         {
                             plecc = EnumPlec.K;
@@ -844,10 +822,9 @@ namespace Clinic_GUI
                         {
                             plecc = EnumPlec.M;
                         }
-
-#pragma warning disable CS8602 // Dereference of a possibly null reference.
+                        #pragma warning disable CS8602 
                         string haslo = p.Konta[pac.Pesel];
-#pragma warning restore CS8602 // Dereference of a possibly null reference.
+                        #pragma warning restore CS8602 
                         Lekarz lekarztestowy = new(TxtBoxImiel.Text, TxtBoxNazwiskol.Text, TxtBoxData_Urodzenial.Text, TxtBoxPesell.Text, plecc);
                         if (pac.Imie == lekarztestowy.Imie && pac.Nazwisko == lekarztestowy.Nazwisko && pac.DataUrodzenia == lekarztestowy.DataUrodzenia && pac.Plec == lekarztestowy.Plec && haslo == TxtBoxPasswordl.Password)
                         {
@@ -896,13 +873,11 @@ namespace Clinic_GUI
                             MessageBox.Show("Success!", "Success");
                             return;
                         }
-
                         else
                         {
                             MessageBox.Show("You must fill the exact doctor values!", "Error");
                             return;
                         }
-
                     }
                 }
                 else
@@ -910,7 +885,6 @@ namespace Clinic_GUI
                     MessageBox.Show("fill the fields!", "Error");
                     return;
                 }
-
             }
             else
             {
@@ -920,11 +894,11 @@ namespace Clinic_GUI
 
         private void Click_Haslo(object sender, RoutedEventArgs e)
         {
-
+            TxtBoxPassword.Password = "";
         }
 
         /// <summary>
-        /// Funkcja odpowiada za widocznosc poszczegolnych TextBoxów, list, itd. 
+        /// This function is responsible for the visibility of individual TextBoxes, lists, etc.
         /// </summary>
         /// <param name="visiblity"></param>
         private void WidocznoscDodaniaLekarza(bool visiblity)
@@ -1020,6 +994,22 @@ namespace Clinic_GUI
             TxtBoxPesell.Text = "69463683526";
             TxtBoxfunkcja.Text = "Cardiology";
             Plecl.Text = "Man";
+            TxtBoxPasswordl.Password = "";
+            TxtBoxpn1.Text = "08:00";
+            TxtBoxwt1.Text = "08:00";
+            TxtBoxsr1.Text = "08:00";
+            TxtBoxczw1.Text = "08:00";
+            TxtBoxpt1.Text = "08:00";
+            TxtBoxsob1.Text = "08:00";
+            TxtBoxnd1.Text = "08:00";
+            TxtBoxpn2.Text = "08:00";
+            TxtBoxwt2.Text = "08:00";
+            TxtBoxsr2.Text = "08:00";
+            TxtBoxczw2.Text = "08:00";
+            TxtBoxpt2.Text = "08:00";
+            TxtBoxsob2.Text = "08:00";
+            TxtBoxnd2.Text = "08:00";
+
         }
     }
 }
