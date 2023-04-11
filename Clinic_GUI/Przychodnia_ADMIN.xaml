@@ -31,6 +31,7 @@
         <Calendar Visibility="Hidden" Name="calendar1" 
           Background="White" 
           Foreground="Black" 
+          Language="English"
           SelectedDate="{Binding SelectedDate, UpdateSourceTrigger=PropertyChanged}" 
           SelectionMode="SingleRange" 
           DisplayMode="Month" Margin="533,255,77,0">

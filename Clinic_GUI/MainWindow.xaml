@@ -47,9 +47,9 @@
                PreviewMouseDown="ShowPassword_PreviewMouseDown" PreviewMouseUp="ShowPassword_PreviewMouseUp" MouseLeave="ShowPassword_MouseLeave" RenderTransformOrigin="12.7,-2.453"/>
         <DockPanel Grid.ColumnSpan="3">
             <Menu DockPanel.Dock="Top">
-                <MenuItem Header="_Plik">
-                    <MenuItem Header="_Otwórz" Click="MenuOtworz_Click"/>
-                    <MenuItem Header="_Zapisz" Click="MenuZapisz_Click"/>
+                <MenuItem Header="_File">
+                    <MenuItem Header="_Open" Click="MenuOtworz_Click"/>
+                    <MenuItem Header="_Save" Click="MenuZapisz_Click"/>
                 </MenuItem>
             </Menu>
             <StackPanel></StackPanel>

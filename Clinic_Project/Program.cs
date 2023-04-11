@@ -208,7 +208,7 @@ Console.WriteLine("=========");
 List<Diagnoza> ab = (przychodnia.Pacjenci.Find(p => p.Pesel == "02463001875").HistoriaWizyt);
 
 #pragma warning restore CS8602
-string fname = "przychodnia.xml";
+string fname = "clinic.xml";
 
 przychodnia.ZapiszDC(fname);
 
